@@ -5,7 +5,7 @@ set nocompatible
 filetype plugin indent off
 
 if has('vim_starting')
-  set runtimepath+=~/workspace/dotfiles/neobundle.vim/
+  set runtimepath+=~/.vim/neobundle.vim/
   call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 

@@ -7,3 +7,6 @@ do
   ln -s ~/workspace/dotfiles/$file ~/$file
   echo "シンボリックリンクを貼りました: ~/$file"
 done
+
+mkdir -p ~/.vim/bundle
+git clone https://github.com/Shougo/neobundle.vim ~/.vim/neobundle.vim
