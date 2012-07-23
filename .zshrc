@@ -2,6 +2,8 @@ bindkey -e
 alias r='rails'
 alias ls='ls -G'
 alias ll='ls -lah -G'
+alias vi='/usr/local/vim-7.3/bin/vim'
+alias vim='/usr/local/vim-7.3/bin/vim'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -24,6 +26,7 @@ RPROMPT='%{%}%h %{%}%T%{%}'
 #    [[ -n "$vcs_info_msg_0_" ]]  psvar[1]="$vcs_info_msg_0_"
 #}
 #RPROMPT="%1(v|%F{green}%1v%f|)"
+source ~/.zsh/git-completion.bash
 _set_env_git_current_branch() {
 GIT_CURRENT_BRANCH=$( git branch 2> /dev/null | grep '^\*' | cut -b 3- )
 }

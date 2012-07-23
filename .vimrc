@@ -10,9 +10,9 @@ if has('vim_starting')
 endif
 
 NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'Shougo/unite.vim'
-NeoBundle 'Shougo/vimproc'
-NeoBundle 'ujihisa/unite-locate'
+"NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'Shougo/vimproc'
+"NeoBundle 'ujihisa/unite-locate'
 NeoBundle 'violetyk/cake.vim'
 NeoBundle 'The-NERD-tree'
 NeoBundle 'The-NERD-Commenter'
