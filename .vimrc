@@ -9,18 +9,20 @@ if has('vim_starting')
   call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
-NeoBundle 'Shougo/neobundle.vim'
 "NeoBundle 'Shougo/unite.vim'
 "NeoBundle 'Shougo/vimproc'
 "NeoBundle 'ujihisa/unite-locate'
+"NeoBundle 'rails.vim'
+NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'violetyk/cake.vim'
 NeoBundle 'The-NERD-tree'
 NeoBundle 'The-NERD-Commenter'
-NeoBundle 'rails.vim'
 NeoBundle 'Gist.vim'
 NeoBundle 'jelera/vim-javascript-syntax'
+NeoBundle 'tpope/vim-surround'
 " Color Scheme
 NeoBundle 'altercation/vim-colors-solarized'
+
 filetype plugin indent on
 
 syntax on

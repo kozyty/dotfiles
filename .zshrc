@@ -26,7 +26,7 @@ RPROMPT='%{%}%h %{%}%T%{%}'
 #    [[ -n "$vcs_info_msg_0_" ]]  psvar[1]="$vcs_info_msg_0_"
 #}
 #RPROMPT="%1(v|%F{green}%1v%f|)"
-source ~/.zsh/git-completion.bash
+#source ~/.zsh/git-completion.bash
 _set_env_git_current_branch() {
 GIT_CURRENT_BRANCH=$( git branch 2> /dev/null | grep '^\*' | cut -b 3- )
 }
