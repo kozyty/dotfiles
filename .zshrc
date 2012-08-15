@@ -3,7 +3,7 @@ alias r='rails'
 alias ls='ls -G'
 alias ll='ls -lah -G'
 alias vi='/usr/local/vim-7.3/bin/vim'
-alias vim='/usr/local/vim-7.3/bin/vim'
+#alias vim='/usr/local/vim-7.3/bin/vim'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000

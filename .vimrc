@@ -3,7 +3,13 @@
 " viとの互換性をとらない(vimの独自拡張機能を使う為)
 set nocompatible
 
-" vundle
+filetype plugin indent off
+
+if has('vim_starting')
+  set runtimepath+=~/.vim/neobundle.vim/
+  call neobundle#rc(expand('~/.vim/bundle/'))
+endif
+
 source $HOME/workspace/dotfiles/bundles.vim
 
 "----------------------------------------------------
@@ -640,7 +646,7 @@ let NERDSpaceDelims = 1
 " カラー表示するか
 let NERDChristmasTree = 1
 " 起動時に隠しファイルを表示するか（あとで切り替えられる）
-let NERDTreeShowHidden = 0
+let NERDTreeShowHidden = 1
 " カーソル行を強調する場合1
 let NERDTreeHighlightCursorline = 0
 " NERDTreeウィンドウのサイズ
@@ -856,7 +862,7 @@ nnoremap <Space>cd :<C-u>Cdesc
 "----------------------------------------------------
 " localrc.vim
 "----------------------------------------------------
-" call localrc#load('.init.vimrc', $HOME)
+call localrc#load('.init.vimrc', $HOME)
 
 "----------------------------------------------------
 " gist.vim
@@ -945,6 +951,10 @@ let g:ctrlp_open_multi          = '10t' " 複数ファイルを開く時にタ�
 let g:ctrlp_max_height = 30
 " let g:ctrlp_max_height = &lines
 
+"----------------------------------------------------
+" ctrlp.vim
+"----------------------------------------------------
+set tags=tags
 
 
 ""----------------------------------------------------

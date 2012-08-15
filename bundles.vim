@@ -1,13 +1,6 @@
 "----------------------------------------------------
 "" NeoBundle関連
 "----------------------------------------------------
-filetype plugin indent off
-
-if has('vim_starting')
-  set runtimepath+=~/.vim/neobundle.vim/
-  call neobundle#rc(expand('~/.vim/bundle/'))
-endif
-
 
 " help
 NeoBundle 'vim-jp/vimdoc-ja'
@@ -41,6 +34,7 @@ NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'SQLUtilities'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Modeliner'
+NeoBundle 'taglist.vim'
 
 " framework
 NeoBundle 'tpope/vim-rails'
@@ -69,5 +63,3 @@ NeoBundle 'hail2u/vim-css3-syntax'
 
 " indent
 NeoBundle 'pangloss/vim-javascript'
-
-filetype plugin indent on
