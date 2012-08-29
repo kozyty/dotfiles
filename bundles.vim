@@ -35,6 +35,8 @@ NeoBundle 'SQLUtilities'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'vim-scripts/Modeliner'
 NeoBundle 'taglist.vim'
+NeoBundle 'tomtom/checksyntax_vim'
+NeoBundle 'tomtom/quickfixsigns_vim'
 
 " framework
 NeoBundle 'tpope/vim-rails'

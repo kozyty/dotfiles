@@ -17,16 +17,16 @@ PROMPT="%{%}%n@%m%{%}${WINDOW:+[$WINDOW]} %{%}%(4~,%-1~/.../%2~,%~)%{%} %# "
 RPROMPT='%{%}%h %{%}%T%{%}'
 
 # git branch
-#autoload -Uz vcs_info
-#zstyle ':vcs_info:*' formats '(%s)-[%b]'
-#zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-#precmd () {
-#    psvar=()
-#    LANG=en_US.UTF-8 vcs_info
-#    [[ -n "$vcs_info_msg_0_" ]]  psvar[1]="$vcs_info_msg_0_"
-#}
-#RPROMPT="%1(v|%F{green}%1v%f|)"
-#source ~/.zsh/git-completion.bash
+# autoload -Uz vcs_info
+# zstyle ':vcs_info:*' formats '(%s)-[%b]'
+# zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+# precmd () {
+   # psvar=()
+   # LANG=en_US.UTF-8 vcs_info
+   # [[ -n "$vcs_info_msg_0_" ]]  psvar[1]="$vcs_info_msg_0_"
+# }
+# RPROMPT="%1(v|%F{green}%1v%f|)"
+# source ~/.zsh/git-completion.bash
 _set_env_git_current_branch() {
 GIT_CURRENT_BRANCH=$( git branch 2> /dev/null | grep '^\*' | cut -b 3- )
 }
@@ -76,13 +76,12 @@ setopt auto_pushd
 setopt correct
 setopt list_packed
 
-#sudoでも補完の対象
-#zstyle ':completion:*:sudo:*' command-path ~/bin /opt/local/bin /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /b
+# sudoでも補完の対象
+zstyle ':completion:*:sudo:*' command-path ~/bin /opt/local/bin /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /b
 
-
+# history-search-end
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
-

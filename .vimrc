@@ -804,7 +804,10 @@ let g:scratchBackupFile=$HOME . "/scratch.txt"
 " zencoding.vim
 "----------------------------------------------------
 " デフォルトは<C-Y>
-let g:user_zen_leader_key = '<C-Space>'
+let g:user_zen_leader_key = '<C-y>'
+
+" 挿入モードで実行
+let g:user_zen_expandabbr_key = '<C-y>'
 
 " タグやスニペットの入力補完を使う
 let g:use_zen_complete_tag = 1
@@ -815,9 +818,8 @@ let g:use_zen_complete_tag = 1
 " filterについて -> http://code.google.com/p/zen-coding/wiki/Filters
 let g:user_zen_settings = {
       \ 'lang' : 'ja',
-      \ 'indentation' : '\t',
+      \ 'indentation' : '  ',
       \ 'html' : {
-      \   'indentation' : '  ',
       \   'filters' : 'html,c',
       \ },
       \ 'css' : {
@@ -826,8 +828,10 @@ let g:user_zen_settings = {
       \ 'php' : {
       \   'filters' : 'html',
       \ },
+      \ 'ctp' : {
+      \   'filters' : 'html',
+      \ },
       \ 'htmlcake' : {
-      \   'indentation' : '  ',
       \   'extends' : 'html',
       \ },
       \ 'perl' : {
@@ -1051,12 +1055,12 @@ set tags=tags
 "let MyGrep_ShellEncoding = 'utf-8'
 
 "" Tabs
-"nnoremap <D-t> :<C-u>tabnew<CR>:tabmove<CR>
-"nnoremap <D-w> :<C-u>tabclose<CR>
-"nnoremap <D-}> :<C-u>tabnext<CR>
-"nnoremap <D-{> :<C-u>tabprevious<CR>
-"nnoremap <C-p> :<C-u>bp<CR>
-"nnoremap <C-n> :<C-u>bn<CR>
+nnoremap <D-t> :<C-u>tabnew<CR>:tabmove<CR>
+nnoremap <D-w> :<C-u>tabclose<CR>
+nnoremap <D-}> :<C-u>tabnext<CR>
+nnoremap <D-{> :<C-u>tabprevious<CR>
+nnoremap <C-p> :<C-u>bp<CR>
+nnoremap <C-n> :<C-u>bn<CR>
 
 " git
 let g:gitCurrentBranch = ''
@@ -1084,6 +1088,8 @@ augroup BinaryXXD
   autocmd BufWritePost * if &binary | silent %!xxd -g 1
   autocmd BufWritePost * set nomod | endif
 augroup END
+
+autocmd BufWritePost *.php,*.ctp :CheckSyntax
 
 imap <C-a> <Home>
 imap <C-e> <End>
