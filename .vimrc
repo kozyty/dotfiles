@@ -936,6 +936,15 @@ if has('unix') && !has('gui_running')
 endif
 
 "----------------------------------------------------
+" easymotion.vim
+"----------------------------------------------------
+let g:EasyMotion_keys = 'hjklasdfgyuiopqwertnmzxcvbHJKLASDFGYUIOPQWERTNMZXCVB'
+let g:EasyMotion_leader_key = "<Space>"
+let g:EasyMotion_grouping = 1
+hi EasyMotionTarget ctermbg=none ctermfg=red
+hi EasyMotionShade  ctermbg=none ctermfg=blue
+
+"----------------------------------------------------
 " Modeliner
 "----------------------------------------------------
 let g:Modeliner_format='ft= et ff= fenc= sts= sw= ts='
@@ -1061,6 +1070,9 @@ nnoremap <D-}> :<C-u>tabnext<CR>
 nnoremap <D-{> :<C-u>tabprevious<CR>
 nnoremap <C-p> :<C-u>bp<CR>
 nnoremap <C-n> :<C-u>bn<CR>
+
+" cakevim
+let g:cakephp_enable_auto_mode = 1
 
 " git
 let g:gitCurrentBranch = ''
