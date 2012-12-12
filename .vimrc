@@ -105,7 +105,7 @@ else
 endif
 
 " スワップファイルを作らない
-" set noswapfile
+set noswapfile
 
 " スワップファイルを作るディレクトリ
 if has('win32') || has('win64')
@@ -866,7 +866,7 @@ nnoremap <Space>cd :<C-u>Cdesc
 "----------------------------------------------------
 " localrc.vim
 "----------------------------------------------------
-call localrc#load('.init.vimrc', $HOME)
+"call localrc#load('.init.vimrc', $HOME)
 
 "----------------------------------------------------
 " gist.vim
@@ -1101,7 +1101,7 @@ augroup BinaryXXD
   autocmd BufWritePost * set nomod | endif
 augroup END
 
-autocmd BufWritePost *.php,*.ctp :CheckSyntax
+autocmd BufWritePost *.php,*.ctp,*.js,*.rb,*.css,*.scss,*.erb,*.haml,*.html :CheckSyntax
 
 imap <C-a> <Home>
 imap <C-e> <End>

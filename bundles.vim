@@ -38,10 +38,11 @@ NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'taglist.vim'
 NeoBundle 'tomtom/checksyntax_vim'
 NeoBundle 'tomtom/quickfixsigns_vim'
-NeoBundle 'sji/gundo.vim'
+"NeoBundle 'sji/gundo.vim'
 
 " framework
 NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-rake'
 NeoBundle 'violetyk/cake.vim'
 NeoBundle 'naberon/vim-cakehtml'
 
@@ -64,6 +65,7 @@ NeoBundle 'jQuery'
 NeoBundle 'JavaScript-syntax'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'tpope/vim-haml'
 
 " indent
 NeoBundle 'pangloss/vim-javascript'
