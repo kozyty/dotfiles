@@ -1,9 +1,10 @@
 #!/bin/sh
 
+cd ~/
 mkdir swap backup tmp memo tags trash
 
 cd ~/workspace/dotfiles
-DOT_FILES=( .bashrc .vimrc .screenrc .zshrc .ctags .gitignore .gitconfig)
+DOT_FILES=( .bashrc .vim .vimrc .screenrc .zshrc .ctags .gitignore .gitconfig)
 for file in ${DOT_FILES[@]}
 do
   ln -sf ~/workspace/dotfiles/$file ~/$file
