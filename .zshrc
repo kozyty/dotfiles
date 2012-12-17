@@ -1,7 +1,17 @@
+# .zshrc
+
+# BindKey
 bindkey -e
+
+## Alias
 alias r='rails'
-alias ls='ls'
 alias ll='ls -lah'
+alias rm='rm -i'
+alias cp='cp -i'
+alias vi='vim'
+alias wget='wget --no-check-certificate'
+alias grep='grep -n --color'
+alias vim='~/bin/vim'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000

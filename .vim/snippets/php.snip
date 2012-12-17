@@ -1,0 +1,1053 @@
+# c : Controller
+# m : Model
+# p : <?
+# e : echo
+# h : Htmlヘルパー
+# f : Formヘルパー
+
+# validateと被るので削除。
+delete date
+
+# --------------------------------------------------
+# Controller
+# --------------------------------------------------
+snippet controller
+abbr Controller
+    class ${1}Controller extends ${3:AppController} {
+
+        var $name = '${2}';
+        var $uses = null;
+        // var $scaffold;
+        // var $view = 'Theme';
+        // var $theme = '';
+        // var $layout = 'default';
+        // var $components = array();
+        // var $helpers = array();
+
+        function index() {
+        }
+        ${0}
+    }
+
+snippet cset
+        $this->set('${1:name}', ${2:value});${0}
+
+snippet csetcompact
+        $this->set(compact('${1:name}', '${2:name}'));${0}
+
+snippet credirect
+        $this->redirect(array('controller' => '${1:controller_name}', 'action' => '${2:action_name}'));${0}
+
+snippet cajax
+abbr Ajaxのアクション
+    function ${1:action}() {
+        if (Configure::read('debug') >= 2) {
+          Configure::write('debug', 1);
+        }
+        $this->layout = 'ajax';
+        if ($this->RequestHandler->isAjax()) {
+          $this->RequestHandler->setContent('json');
+          $this->RequestHandler->respondAs('application/json; charset=UTF-8');
+          ${0}
+        }
+    }
+
+snippet cpaginate
+abbr ページング
+    $this->paginate['${1:model_name}'] = array(
+      'conditions' => array(
+        '${2:where_column}' => ${3:where_condition},
+      ),
+      'fields' => array(),
+      'limit' => 15,
+      'order' => array('Model.col' => 'desc/asc'),
+      'recursive' => -1,
+    );
+    $this->set("${4:param_name}", $this->paginate("${5:model_name}"));${0}
+
+snippet cflash
+abbr フラッシュメッセージを出す便利メソッド
+  $this->flash('${1:message}', $this->referer());${0}
+
+snippet cflash_session
+abbr セッションにメッセージを入れる
+  $this->Session->setFlash('');
+
+snippet cvalidate_error_count
+abbr バリデーションエラー数を取得
+  $this->${1:Model}->set($this->data));
+  $this->validate($this->${1:Model})${0};
+
+snippet cvalidate_errors
+abbr バリデーションエラーの連想配列を取得
+  $this->${1:Model}->set($this->data));
+  $this->validateErrors($this->${1:Model})${0};
+
+# --------------------------------------------------
+# Model
+# --------------------------------------------------
+snippet model
+abbr Model
+    class ${1:singular_name} extends ${2:AppModel} {
+
+        // var $userTable = false;
+        // var $useDbConfig = 'db_config';
+        var $name = '${3:singular_name}';
+        var $displayField = '${4:column_name}';
+        var $validate = array(
+
+        );
+        ${0}
+    }
+
+snippet mhasone
+    var $hasOne = array(
+        '${1:model_name}' => array(
+            'className' => '${2:model_name}', //相手側のモデルクラス名
+            'foreignKey' => '${3}',     // 相手側で持っている自分に対するキーの名前。デフォルトは「自分_id」
+            'conditions' => array(),    // 該当レコードに追加する検索条件
+            'fields' => array(),        // 該当フィールド名
+            'dependent' => false,       // 自分を削除した場合にアソシエーション側も削除する場合はtrue。
+        ),
+    );
+    ${0}
+
+snippet mhasmany
+    var $hasMany = array(
+        '${1:model_name}' => array(
+            'className' => '${2:model_name}', // 相手側のモデルクラス名。
+            'foreignKey' => '${3}', // 相手側で持っている自分に対するキーの名前。デフォルトは「自分_id」
+            // 'conditions' => array(), // 該当レコードに追加する検索条件
+            // 'fields' => array(), // 該当フィールド名
+            // 'order' => array('' => 'desc/asc'), // 並び替え絵を行うフィールド
+            // 'limit' => 10, // 取得したいレコード最大数
+            // 'offset' => 5, // スキップするレコード数
+            // 'dependent' => true, // 自分を削除した場合にアソシエーション側も削除する場合true(要deleteメソッドの第二引数true)
+            // 'exclusive' => false, // deleteAllによって一括で削除を行いたい場合はtrue
+            // 'finderQuery' => '', // find時に独自のSQLが必要な場合に指定する
+        ),
+    );
+    ${0}
+
+
+
+snippet mbelongsto
+    var $belongsTo = array(
+        '${1:model_name}' => array(
+            'className' => '${2:model_name}', //相手側のモデルクラス名。
+            'foreignKey' => '${3}',		// 自分側で持つ相手側のキーの名前。デフォルトは「相手_id」
+            'conditions' => array(),	// 該当レコードに追加する検索条件
+            'fields' => array(),		// 該当フィールド名
+            // 'counterCache' => true,  // trueまたはその格納フィールド名。デフォルトは上位テーブルの「自分のテーブル(単数形)_count」
+        ),
+    );
+    ${0}
+
+snippet mhabtm
+    var $hasAndBelongsToMany = array(
+        '${1:model_name}' => array(
+            'className' => '${2:model_name}', // 相手側のモデルクラス名。
+            'joinTable' => '${3:join_table}', // リンクテーブル。（例：contents_categories）
+            // 'with' => , //中間テーブルのモデル名。中間テーブルにも値を置き、モデルとして使用したい場合に指定する。
+            'foreignKey' => '${4:id_column_name}', //自分に対する外部キーを格納する中間テーブル内のフィールド名
+            'associationForeignKey' => '${5:id_column_name}', // 相手の外部キーを格納する中間テーブル内のフィールド名
+            'unique' => true, // 相手側に重複した値を許さない場合true
+            // 'conditions' => '', // 該当レコードに追加する検索条件array。findと同じ。
+            // 'fields' => '', // 該当フィールド名array。findと同じ。
+            // 'order' => '', // ORDER BY。findと同じ。
+            // 'limit' => 10, // 取得最大件数
+            // 'offset' => 5, //スキップするレコード数
+            // 'finderQuery' => '', find時に独自のSQLが必要な場合に指定
+            // 'deleteQuery' => '', delete時に独自のSQLが必要な場合に指定
+            // 'insertQuery' => '' save時に独自のSQLが必要な場合に指定
+        ),
+    );
+    ${0}
+
+snippet mfind
+  $this->${1:model_name}->find('${2:all/first/count/list/threaded/neighbours}', array(
+    'contain' => false,
+    'conditions' => array(
+        '${3:where_column}' => ${4:where_condition},
+    ),
+    // 'fields' => array(
+    //   '',
+    // ),
+    // 'fields' => array('count(id) as "Model__count"'),
+    // 'limit' => 10,
+    // 'order' => array('Model.col' => 'desc/asc'),
+    // 'order' => 'rand()',
+    // 'group' => array('Model.col'),
+    // 'recursive' => -1,
+  ));
+  ${0}
+
+snippet mread
+    $this->${1:model_name}->read(${2:array_fields}, ${3:primary_id});${0}
+
+snippet mfindby
+    $this->${1:model_name}->findBy${2:Id}(${3:$id});${0}
+
+snippet mfield
+    $this->${1:model_name}->field(${2:field_name}, ${3:array_condition}, ${4:array('Model.col' => 'desc/asc')});${0}
+
+snippet mcreate
+    $this->${1:model_name}->create();${0}
+
+snippet mset
+    $this->${1:model_name}->set(${2:keyvalue_data});${0}
+
+snippet misunique
+abbr 指定カラム全てでuniqueかチェックの場合は第二引数をtrue（デフォルト）。
+    $this->${1:model_name}->isUnique(${2:array_fields}, false)${0}
+
+snippet msave
+    $this->${1:model_name}->save(${2:array_data}, ${3:true}, ${4:array_validate_fields})${0}
+
+snippet msaveall
+abbr 複数レコードやアソシエーションを一括登録
+    $this->${1:model_name}->saveAll(${2:array_data}, array('atomic' => ${3:true}, 'validate' => ${4:true or 'only'}))${0}
+
+snippet msave_field
+abbr 特定カラムの更新(バリデーションする場合true)
+    $this->${1:model_name}->saveField('${2:field_name}', ${3:value}, ${4:false});${0}
+
+snippet mupdateall
+    $this->${1:model_name}->updateAll(
+        array(
+            '${2:update_column}' => ${3:update_value},
+        ),
+        array(
+            '${5:where_column}' => ${6:where_condition},
+        )
+    );
+    ${0}
+
+snippet mlastinsertid
+    $this->${1:model_name}->getLastInsertID();${0}
+
+snippet mdelete
+    $this->${1:model_name}->delete(${2:$id}, ${3:false})${0} // アソシエーションも削除する場合は第二引数をtrue。
+
+snippet mdeleteall
+    $this->${1:model_name}->deleteAll(
+        array(
+            '${2:where_column}' => ${3:where_condition},
+        ),
+        false,  // アソシエーションも削除する場合はtrue。
+        false); // コールバック(beforeDelete(),afterDelete())を実行する場合はtrue。
+
+snippet mbindmodel
+    $this->${1:model_name}->bindModel(array(
+        '${2:hasOne/hasMany/belongsTo/hasAndBelongsToMany}' => array(
+            '${3:bind_model_name}',
+        ),
+    ), true); // 一時的にアソシエーションを設定する場合はtrue（デフォルト。find()等を行うと解除される。）。
+    ${0}
+
+snippet munbindmodel
+    $this->${1:model_name}->unbindModel(array(
+        '${2:hasOne/hasMany/belongsTo/hasAndBelongsToMany}' => array(
+            '${3:unbind_model_name}',
+        ),
+    ), true); // 一時的にアソシエーションを解除する場合はtrue（デフォルト）。
+    ${0}
+
+snippet mattach
+    $this->${1:model_name}->Behaviors->attach('${2:behavior_name}');${0}
+
+snippet mdetach
+    $this->${1:model_name}->Behaviors->detach('${2:behavior_name}');${0}
+
+snippet mgetnumrows
+    $this->${1:model_name}->getNumRows()${0}
+
+snippet mgetaffectedrows
+    $this->${1:model_name}->getAffectedRows()${0}
+
+snippet minvalidate
+abbr 指定フィールドをエラーにする
+    $this->${1:model_name}->invalidate(${2:field_name}, '${3:error_message}')${0}
+
+snippet mhasany
+abbr 指定フィールドに該当するユーザがいるかどうか
+    $this->${1:model_name}->hasAny(${2:array_condition})${0}
+
+snippet mvirtualfields
+abbr バーチャルフィールドの指定
+    $this->${1:model_name}->virtualFields['${2:column_name}'] = '${3}';${0}
+
+# --------------------------------------------------
+# Model (Tree Behavior)
+# --------------------------------------------------
+
+snippet mtreechildren
+abbr 子ノードの入手
+    $children = $this->${1:model_name}->children(
+      ${2:$id},
+      ${3:false}, // 直下の子ノードのみ取得する場合true
+      ${4:array or null}, // fields
+      array('${5:model_name}.lft' => 'asc'), //order(default:null)
+      ${6:int or null}, // limit
+      ${7:1}, // page番号
+      ${8:1} // recursive
+    );
+
+snippet mtreeparent
+abbr 親ノードの入手
+    $parent = $this->${1:model_name}->getparentnode(${2:$id}, ${3:array_fields}, ${4:recursive});${0}
+
+
+# --------------------------------------------------
+# Model (Validation)
+# --------------------------------------------------
+
+snippet mv
+abbr バリデーション
+    '${1:field_name}' => array(
+        'rule' => '${2:rule}',
+        'message' => '${3:error_message}',
+        // 'required' => true, /* 必須*/
+        // 'allowEmpty' => true, /* 空文字の許可*/
+        // 'last' => false, /* そのエラーが発生した時点で以降のバリデーションは打ち切り */
+        // 'on' => 'update', /* 'create'か'update'時にバリデーションを限定する */
+    ),
+    ${0}
+
+snippet mvrnotempty
+abbr 値が空ではないか
+    'rule' => 'notEmpty',${0}
+
+snippet mvrblank
+abbr 値が空かどうか
+    'rule' => 'blank',${0}
+
+snippet mvrnumeric
+abbr 数値かどうか
+    'rule' => 'numeric',${0}
+
+snippet mvralphanumeric
+abbr 半角英数字かどうか
+    'rule' => 'alphaNumeric',${0}
+
+snippet mvrboolean
+abbr 0,1,true,falseかどうか
+    'rule' => 'boolean',${0}
+
+snippet mvrdecimal
+abbr 10進数かどうか
+    'rule' => array('decimal', ${1:number_of_decimal_places}),${0} /* 符号,実数,指数表現も含む */
+
+snippet mvrminlength
+abbr 指定文字数以上か
+    'rule' => array('minLength', ${1:length}),${0}
+
+snippet mvrmaxlength
+abbr 指定文字数以内か
+    'rule' => array('maxLength', ${1:length}),${0}
+
+snippet mvrbetween
+abbr 文字列長が指定範囲内か
+    'rule' => array('between', ${1:min<=}, ${2:<=max}),${0}
+
+snippet mvrrange
+abbr 数値が指定範囲内か
+    'rule' => array('range', ${1:min<}, ${2:<max}),${0}
+
+snippet mvrinlist
+abbr 値がリスト中に含まれるか
+    'rule' => array('inList', array(${1:value}, ${2:value})),${0}
+
+snippet mvrcomparison
+abbr 指定値との演算が真か
+    'rule' => array('comparison', '${1:>/</>=/<=/==/!=}', ${2:value}),${0}
+
+snippet mvrequalto
+abbr 指定値と同じか
+    'rule' => array('equalTo', '${1:value}'),${0}
+
+snippet mvremail
+abbr メールアドレスか
+    'rule' => 'email',${0}
+
+snippet mvremail_deep
+abbr メールアドレスか
+    'rule' => array('email', ${2:false}, '${3:regex}'),${0} /* 第二引数をtrueにするとDNS正引きしドメインが有効かチェックする */
+
+snippet mvrextension
+abbr 指定の拡張子かどうか
+    'rule' => array('extension', ${1:array('gif', 'jpeg', 'png', 'jpg')}),${0}
+
+snippet mvrip
+abbr 値がIPアドレスか
+    'rule' => array('ip', '${1:ipv4/ipv6/both}'),${0}
+
+snippet mvrmoney
+abbr 値が金額かどうか
+    'rule' => array('money', '${1:left/right}'),${0}
+
+snippet mvrmultiple
+abbr multiple形式のselectタグの戻り値
+    'rule' => array('multiple', array('in' => array(${1:value_list}), 'min' => ${2:min_selected}, 'max' => ${3:max_selected})),${0} /* リスト外の値があったらNG */
+
+snippet mvrurl
+abbr URL形式かどうか
+    'rule' => array('url', ${1:false}),${0} /* プロトコル名から始まっている事をチェックする場合true */
+
+snippet mvrcustom
+abbr preg形式の正規表現にあてはまるか
+    'rule' => array('custom', '${1:/regex/}'),${0}
+
+snippet mvrregex
+abbr preg形式の正規表現にあてはまるか
+    'rule' => array('custom', '${1:/regex/}'),${0}
+
+snippet mvrcreditcard
+abbr クレジットカード番号かどうか
+    'rule' => array('cc', '${1:fast/all/amex/diners/jcb/mc/visa}', ${2:true}),${0}
+
+snippet mvrcc
+abbr クレジットカード番号かどうか
+    'rule' => array('cc', '${1:fast/all/amex/diners/jcb/mc/visa}', ${2:true}),${0}
+
+snippet mvrdate
+abbr 値が日付かどうか
+    'rule' => array('date', '${1:ymd}'),${0}
+
+snippet mvrtime
+abbr 値が時間かどうか
+    'rule' => 'time',${0}
+
+snippet mvruuid
+abbr String::uuid()のユニークID形式かどうか
+    'rule' => 'uuid',${0}
+
+snippet mvrisunique
+abbr 値が他の行で出現せず、ユニークかどうか
+    'rule' => 'isUnique',${0}
+
+# --------------------------------------------------
+# View
+# --------------------------------------------------
+snippet pelement
+abbr エレメント
+    <?= $this->element('${1:element_name}') ?>${0}
+
+snippet pelement_cache
+abbr エレメント＆キャッシュ1日
+    <?= $this->element('${1:element_name}', array('cache' => true)) ?>${0}
+
+snippet pelement_cachekey
+abbr エレメント＆キー付キャッシュ
+    <?= $this->element('${1:element_name}', array('cache' => array('key' => '${2:key}', 'time'=> '+1 day'))) ?>${0}
+
+snippet pelement_chackekey_param
+abbr エレメント＆キャッシュ＆値
+    <?= $this->element('${1:element_name}', array('cache' => array('key' => '${2:key}', 'time'=> '+1 day'), 'var' => ${3:param})) ?>${0}
+
+snippet pelement_param
+abbr エレメントの値渡し
+    <?= $this->element('${1:element_name}', array('${2:key} => ${3:value})); ?>${0}
+
+# --------------------------------------------------
+# Html helper
+# --------------------------------------------------
+snippet pehdoctype
+    <?= $html->doctype('${1:html4-strict/html4-trans/html4-frame/xhtml-strict/xhtml-trans/xhtml-frame/xhtml11}') ?>${0}
+
+snippet pehmeta
+    <?= $html->meta('${1:keywords/description}', '{$2:content}') ?>${0}
+
+snippet pehfavicon
+    <?= $html->meta('icon', '/favicon.ico') ?>${0}
+
+snippet pehcharset
+    <?= $html->charset('${1:UTF-8}') ?>${0}
+
+snippet pehcss
+    <?= $html->css('${1:css_name}') ?>${0}
+
+snippet pehscript
+    <?= $html->script('${1:js_name}', array('inline' => ${2:true})) ?>${0}
+
+snippet pehscriptcode
+    <?= $html->scriptStart(array('inline' => ${1:true}, 'safe' => ${2:true})) ?>${0}
+    $(function(){
+    ${1}
+    });
+    <?= $html->scriptEnd() ?>
+    ${0}
+
+snippet pehlink_action
+abbr <a>アクション&ID指定
+    <?= $html->link('${1:title}', array('action' => '${2:action}', ${3:model['model']['id']}, 'admin' => ${4:false} ), array('escape' => ${5:true}, 'class' => '${6:class_name}')) ?>${0}
+
+snippet pehlink_controller_action
+abbr <a>コントローラ&アクション、パラメータ指定
+    <?= $html->link('${1:title}', array('controller' => '${2:controller}', 'action' => '${3:action}', 'admin' => ${4:false} ), array('escape' => ${5:true}, 'class' => '${6:class_name}')) ?>${0}
+
+snippet pehlink_confirm
+abbr <a>確認ダイアログ付き
+    <?= $html->link('${1:title}', array('controller' => '${2:controller}', 'action' => '${3:action}', 'admin' => ${4:false} ), array('escape' => ${5:true}, 'class' => '${6:class_name}'), '${7:confirm_text}') ?>${0}
+
+snippet pehlink_url
+abbr <a>URL指定
+    <?= $html->link('${1:title}', '${2:url}', array('escape' => ${3:false})) ?>${0}
+
+snippet pehlink_img
+    <?= $html->link($html->image('${1:path from /img}', array('alt' => '${2}')), array('controller' => '${3:controller}', 'action' => '${4:action}', 'admin' => ${5:false} ), array('escape' => ${6:false})) ?>${0}
+
+snippet pehimg
+    <?= $html->image('${1:path from /img}', array('alt' => '${2}' ,'url' => '${3}')) ?>${0}
+
+snippet pehtag
+    <?= $html->tag('${1:tag_name}', ${2:inner_html}, array('escape' => ${3:false}, ${4:attribute})) ?>${0}
+
+snippet pehurl
+    <?= $html->url(array('controller' => '${1:controller}', 'action' => '${2:action}'), ${3:true})) ?>${0}
+
+# --------------------------------------------------
+# Form helper
+# --------------------------------------------------
+snippet pefcreate
+    <?= $form->create() ?>${0}
+
+snippet pefcreate_model
+    <?= $form->create('${1:model_name}') ?>${0}
+
+snippet pefcreate_url
+abbr $form->create() Router::url()形式
+    <?= $form->create(array('url' => array('controller' => '${1:controller_name}', 'action' => '${2:action_name}', ${3:id_value}', admin' => false)) ?>${0}
+
+snippet pefend
+    <?= $form->end() ?>${0}
+
+snippet pefitext
+    <?= $form->input('${1:field_name}', array('type' => 'text', 'maxLength' => ${2:max_length}, 'label' => '${3:label_name/false}', 'error' => ${4:false}, 'class' => '${5:class_name}')) ?>${0}
+
+snippet pefipassword
+    <?= $form->input('${1:field_name}', array('type' => 'password', 'label' => '${2:label_name/false}', 'error' => ${3:false}, 'class' => '${4:class_name}')) ?>${0}
+
+snippet peficheckbox
+    <?= $form->input('${1:field_name}', array('type' => 'checkbox', 'label' => false, 'error' => ${2:false}, 'class' => '${3:class_name}')) ?>${0}
+
+snippet pefiselect
+    <?= $form->input('${1:field_name}', array('type' => 'select', 'options' => array(${2:value} => '${3:text}'), 'empty' => ${4:false}, 'label' => false, 'error' => ${5:false}, 'class' => '${6:class_name}')) ?>${0}
+
+snippet pefimultiple
+    <?= $form->input('${1:field_name}', array('multiple' => 'select/checkbox', 'options' => array(${2:value} => '${3:text}'), 'label' => false, 'error' => ${5:false}, 'class' => '${6:class_name}')) ?>${0}
+
+snippet pefiradio
+    <?= $form->input('${1:field_name}', array('type' => 'radio', 'options' => array(${2:value} => '${3:text}'), 'label' => false, 'legend' => ${4:false}, 'error' => ${5:false}, 'class' => '${6:class_name}', 'separator' => '${7:tag}')) ?>${0}
+
+snippet pefitextarea
+    <?= $form->input('${1:field_name}', array('type' => 'textarea', 'rows' => ${2:rows}, 'cols' => ${3:cols}, 'maxLength' => ${4:max_length}, 'label' => false, 'error' => ${5:false}, 'class' => '${6:class_name}')) ?>${0}
+
+snippet pefihidden
+    <?= $form->input('${1:field_name}', array('type' => 'hidden', 'label' => false , 'error' => ${2:false})); ?>${0}
+
+snippet pefsubmit
+    <?= $form->submit('${1:caption}', array('class' => '${2}')) ?>${0}
+
+snippet pefbutton
+    <?= $form->button('${1:title}', array('type' => '${2:button/reset/submit}', 'id' => '${3}', 'class' => '${4}', 'escape' => ${5:false})) ?>${0}
+
+snippet pefcheckbox
+    <?= $form->checkbox('${1:field_name}', array('class' => ${2:class_name})) ?>${0}
+
+snippet peferror
+    <?= $form->error('${1:field_name}', ${2:null}, array( 'wrap' => '${3:}', 'escape' => ${4:false})) ?>${0}
+
+snippet pifisformerror
+abbr ifフォームのエラーがあるか？
+    <? if ($form->isFieldError('${1:field_name}'): ?>
+    ${0}
+    <? endif ?>
+
+# --------------------------------------------------
+# App
+# --------------------------------------------------
+snippet import
+    App::import('${1:type}', '${2:name}');${0}
+
+# --------------------------------------------------
+# Set
+# --------------------------------------------------
+snippet set_extract
+    Set::extract('${1:path}', ${2:array_data});${0}
+
+snippet set_combine
+    Set::combine(${1:array_data}, '${2:key_path}', '${3:value_path}','${4:group_path}');${0}
+
+# --------------------------------------------------
+# Configure
+# --------------------------------------------------
+snippet configure_load
+    Configure::load('${1:file_name}');${0}
+
+snippet configure_read
+    Configure::read('${1:one.two.three.four}');${0}
+
+snippet configure_write
+    Configure::write('${1:name}', '${2:mixed}');${0}
+
+# --------------------------------------------------
+# Router
+# --------------------------------------------------
+snippet router_url
+    Router::url(array('controller' => '${1:controller_name}', 'action' => '${2:action_name}', 'admin' => ${3:false}), false);${0} // ドメインを含むフルパスでURLを取得する場合は第二引数をtrueにする。
+
+snippet router_querystring
+    Router::queryString(array(${1:param_name} => ${2:param_value}), ${3:extra_array}, false);${0} // extraは追加の連想配列。第一引数と同じ。&をエスケープする場合は第三引数をtrue。
+
+# --------------------------------------------------
+# misc
+# --------------------------------------------------
+# snippet e
+#     e(${1});${0}
+
+#snippet h
+#    h(${1});${0}
+
+snippet pr
+    pr(${1});${0}
+
+snippet ife
+    ife(${1:condition}, ${2:ifNotEmpty}, ${3:ifEmpty});${0}
+
+snippet pe
+    <?= ${1} ?>${0}
+
+snippet peh
+    <?= h(${1}) ?>${0}
+
+snippet error
+    $this->cakeError('${1:error/error404/error500}', array('${2:param_name}' => '${3:param_value}'));${0}
+
+snippet log
+    CakeLog::write(${1:LOG_INFO}, '${2:message}');${0}
+
+snippet classregistry
+    ClassRegistry::init('${1:model_name, component_name etc...}');${0}
+
+snippet classregistryfind
+    ClassRegistry::init('${1:model_name}')->find('${2:all/first/count/list/threaded/neighbours}', array(
+      'contain' => false,
+      'conditions' => array(
+          '${3:where_column}' => ${4:where_condition},
+      ),
+      // 'fields' => array(
+      //   '',
+      // ),
+      // 'fields' => array('count(id) as "Model__count"'),
+      // 'limit' => 10,
+      // 'order' => array('Model.col' => 'desc/asc'),
+      // 'order' => 'rand()',
+      // 'group' => array('Model.col'),
+      // 'recursive' => -1,
+    ));
+    ${0}
+
+
+# --------------------------------------------------
+# Component
+# --------------------------------------------------
+snippet component
+    <?
+
+    class ${1:component_name}Component extends Object {
+
+		/**
+		 * コンポーネントの初期化の時に呼ばれるコールバック。
+		 *
+		 * @param object $controller コントローラのインスタンス
+		 * @param mixed $settings コントローラ内の$componentsプロパティに登録するときに連想配列で受け取るパラメータ。
+		 * @return void
+		 */
+		function initialize(&$controller, $settings) {
+		
+		}
+		
+		/**
+		 * コントローラのbeforeFilter()が呼び出された後に実行されるコールバック。
+		 *
+		 * @param object $controller コントローラのインスタンス。
+		 * @return void
+		 */
+		function startup(&$controller) {
+		    
+		}
+		
+		/**
+		 * コントローラ内でrender()が実行される直前に実行されるコールバック。
+		 *
+		 * @param object $controller コントローラのインスタンス。
+		 * @return void
+		 */
+		function beforeRender(&$controller) {
+		    
+		}
+		
+		/**
+		 * リダイレクト実行直前に呼ばれるコールバック。
+		 *
+		 * @param object $controller コントローラのインスタンス。
+		 * @param mixed $url Controller::redirect()で指定されたURL。Router::url()形式かstring。
+		 * @param int $status Controllr::redirect()で指定されたHTTPステータスコード。通常200。
+		 * @param bool $exit trueの場合、コントローラ内でexit()が呼び出されることを意味している。
+		 * @return void
+		 */
+		function beforeRedirect(&$controller, $url, $status, $exit) {
+		
+		}
+		
+		/**
+		 * コントローラのafterFilter()が実行される直前に実行されるコールバック。
+		 *
+		 * @param object $controller コントローラのインスタンス。
+		 * @return void
+		 */
+		function shutdown(&$controller) {
+		
+		}
+    }
+    ${0}
+
+snippet sesswrite
+abbr セッションへの書き込み
+    $this->Session->write(${1:name}, ${2:mixed_value});${0}
+
+snippet sessread
+abbr セッションからの値読み込み
+    $this->Session->read(${1:name});${0}
+
+snippet sessdelete
+abbr セッション値の削除
+    $this->Session->delete(${1:name});${0}
+
+snippet sesscheck
+abbr セッション値の存在確認
+    $this->Session->check(${1:name});${0}
+
+snippet sessid
+abbr セッションIDの取得
+    $this->Session->id();${0}
+
+snippet sessdestroy
+abbr セッションの破棄
+    $this->Session->destroy();${0}
+
+# --------------------------------------------------
+# JsHelper
+# --------------------------------------------------
+snippet js
+    <?
+		${0}
+
+		e($js->writeBuffer(array('inline' => true)));
+    ?>
+
+snippet jsbuffer
+    $js->buffer(${1:script});${0}
+
+snippet jsget
+    $js->get("${1:id/class}");${0}
+
+snippet jsevent
+    // イベント対象は予め$js->get()で対象にしておく必要がある。
+    $js->event("${1:event}", ${2:callback});
+
+snippet jsalert
+    $js->alert(${1:message});${0}
+
+snippet jsvalue
+    $js->set(${1:mixed});${0}
+
+snippet jsset
+    $js->set("${1:key}", ${2:value});${0}
+
+snippet jsset_array
+    $js->set(array("${1:key}" => ${2:value}));${0}
+
+snippet jsdomready
+    $js->domReady(${1:script});${0}
+
+
+# --------------------------------------------------
+# Ktai Library
+# --------------------------------------------------
+snippet emoji
+    <? $ktai->emoji(${1}); ?>${0}
+
+snippet pehlink_url_ktai
+    <? e( $ktai->link('${1:title}', '${2:url}', array('accesskey' => ${3:number}, 'escape' => ${4:false})) ); ?>${0}
+
+# --------------------------------------------------
+# php
+# --------------------------------------------------
+snippet error_log
+  error_log(print_r(${1:$value}, true), 3, '/var/tmp/php_error.log');${0}
+
+snippet eh
+    echo("hogehoge");
+
+snippet ef
+    echo("fugafuga");
+
+snippet func
+  function ${1}(${2}) {
+  ${0}
+ }
+
+snippet vd
+    var_dump(${1});${0}
+
+snippet php
+  <?php
+    ${1}
+
+
+snippet pfore
+	<? foreach ($${1:variable} as $${2:key}${3: =>}): ?>
+	${0}
+	<? endforeach ?>
+
+snippet pife
+	<? if (${1:condition}): ?>
+	${2}
+	<? else: ?>
+	${0}
+	<? endif ?>
+
+snippet pif
+	<? if (${1:condition}): ?>
+	${0}
+	<? endif ?>
+
+snippet pelse
+	<? else: ?>
+
+snippet this
+	$this->${0}
+
+snippet thisa
+  $this->alias . ${0}
+
+snippet pethis
+	<?= $this->${0} ?>
+
+snippet docc
+	/**
+	 * ${3:undocumented class variable}
+	 *
+	 * @var ${4:string}
+	 **/
+	${1:var} \$${2};${0}
+
+snippet docd
+	/**
+	 * ${3:undocumented constant}
+	 **/
+	define(${1} ${2});${0}
+
+snippet docs
+	/**
+	 * ${4:undocumented function}
+	 *
+	 * @return ${5:void}
+	 * @author ${6}
+	 **/
+	${1}function ${2}(${3});${0}
+
+snippet docf
+	/**
+	 * ${4:comment}
+	 *
+	 * @param ${5:int/string/bool/array/object/mixed} ${6:param_name} ${7:comment}
+	 * @return ${8:type} ${9:comment}
+	 */
+	${1}function ${2}(${3})
+	{
+		${0}
+	}
+
+
+snippet doch
+	/**
+	 * ${1}
+	 *
+	 * @author ${2}
+	 * @version ${3}
+	 * @copyright ${4}
+	 * @package ${5:default}
+	 **/
+	
+	/**
+	 * Define DocBlock
+	 **/
+
+snippet doci
+	/**
+	 * ${2:undocumented class}
+	 *
+	 * @package ${3:default}
+	 * @author ${4}
+	 **/
+	interface ${1}
+	{
+		${0}
+	} // END interface ${1}
+
+snippet c
+	/**
+	 * $0
+	 */
+
+snippet class
+	/**
+	 * ${1}
+	 */
+	class ${2:ClassName}${3:extends}} {
+		$5
+		function ${4:__construct}(${5:argument}) {
+			${0}
+		}
+	}
+
+snippet def
+	${1}defined('${2}')${0}
+
+
+snippet do
+	do {
+		${0}
+	} while (${1});
+
+snippet if? 
+	$${1:retVal} = (${2:condition}) ? ${3:a} : ${4:b} ;
+
+snippet ifelse
+	if (${1:condition}) {
+		${2:# code...}
+	} else {
+		${3:# code...}
+	}
+	${0}
+
+snippet if
+	if (${1:condition}) {
+		${0}
+	}
+
+snippet echo
+	echo "${1:string}"${0};
+
+snippet else
+	else {
+		${0}
+	}
+
+snippet elseif
+	elseif (${1:condition}) {
+		${0}
+	}
+
+snippet for
+	for ($${1:i} = ${2:0}; $${3:i} < ${4}; $${5:i}++) { 
+		${0}
+	}
+
+snippet fore
+	foreach ($${1:variable} as $${2:key}${3: =>} ${4:value}) {
+		${0}
+	}
+
+
+snippet con
+	function __construct(${1})
+	{
+		${0}
+	}
+
+snippet here
+	<<<${1:HTML}
+	${2:content here}
+	$1;
+
+snippet inc
+	include '${1:file}';${0}
+
+snippet inco
+	include_once '${1:file}';${0}
+
+snippet array
+	$${1:arrayName} = array('${2}' => ${3} ${0});
+
+snippet req
+	require '${1:file}';${0}
+
+snippet reqo
+	require_once '${1:file}';${0}
+
+snippet ret
+	return${1};${0}
+
+snippet retf
+	return false;
+
+snippet rett
+	return true;
+
+snippet case
+	case '${1:variable}':
+		${0}
+		break;
+
+snippet switch
+abbr sw
+	switch (${1:variable}) {
+		case '${2:value}':
+			${3:# code...}
+			break;
+		${0}
+		default:
+			${4:# code...}
+			break;
+	}
+
+snippet throw
+	throw new ${1}Exception(${2:"${3:Error Processing Request}"}${4:});
+	${0}
+
+snippet while
+abbr wh
+	while (${1}) {
+		${0}
+	}
+
+snippet gloabals
+	\$GLOBALS['${1:variable}']${2: = }${3:something}${4:;}${0}
+
+snippet cookie
+	\$_COOKIE['${1:variable}']
+
+snippet env
+	\$_ENV['${1:variable}']
+
+snippet files
+	\$_FILES['${1:variable}']
+
+snippet get
+	\$_GET['${1:variable}']
+
+snippet post
+	\$_POST['${1:variable}']
+
+snippet request
+	\$_REQUEST['${1:variable}']
+
+snippet server
+	\$_SERVER['${1:variable}']
+
+snippet session
+	\$_SESSION['${1:variable}']
