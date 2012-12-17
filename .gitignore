@@ -1,0 +1,6 @@
+*\.swp
+.init.vimrc
+.local.vimrc
+tags
+setting.local.php
+.cake

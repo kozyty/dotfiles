@@ -44,6 +44,7 @@ NeoBundle 'sji/gundo.vim'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'violetyk/cake.vim'
 NeoBundle 'naberon/vim-cakehtml'
+NeoBundle 'nanapi/nanapi.vim'
 
 " unite source
 NeoBundle 'unite-colorscheme'

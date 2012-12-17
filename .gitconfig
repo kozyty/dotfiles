@@ -1,0 +1,24 @@
+[user]
+  name = kozyty
+  email = me@kozyty.com
+  #email = taiyo.kojima@nanapi.co.jp
+
+[color]
+  ui = true
+[http]
+  sslVerify = false
+[alias]
+  st = status
+  ss = "status -s"
+  br = "branch -a"
+  co = "checkout"
+  unstage = "reset HEAD --"
+  addu = "add --update"
+  adda = "add --all"
+  commit = "commit -av"
+
+[core]
+  #editor = /usr/local/vim-7.3/bin/vim -c \"set fenc=utf-8\"
+  editor = /usr/bin/vim
+  excludesfile = ~/.gitignore
+  whitespace = cr-at-eol
