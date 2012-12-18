@@ -11,7 +11,8 @@ alias cp='cp -i'
 alias vi='vim'
 alias wget='wget --no-check-certificate'
 alias grep='grep -n --color'
-alias vim='~/bin/vim'
+alias vim='/usr/local/vim-7.3/bin/vim'
+#alias vim='~/bin/vim'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
