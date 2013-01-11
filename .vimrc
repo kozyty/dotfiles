@@ -976,6 +976,37 @@ let g:miniBufExplSplitBelow = 0
 let g:miniBufExplAutoOpen = 0
 map <Leader>t :TMiniBufExplorer<cr>
 
+"----------------------------------------------------
+" TweetVim
+"----------------------------------------------------
+let g:tweetvim_tweet_per_page = 100
+let g:tweetvim_cache_size     = 10
+let g:tweetvim_config_dir     = expand('~/.tweetvim')
+let g:tweetvim_include_rts    = 1
+let g:tweetvim_display_time   = 1
+
+" タイムライン選択用の Unite を起動する
+nnoremap <silent> t :Unite tweetvim<CR>
+" 発言用バッファを表示する
+nnoremap <silent> s           :<C-u>TweetVimSay<CR>
+" mentions を表示する
+nnoremap <silent> <Space>re   :<C-u>TweetVimMentions<CR>
+" 特定のリストのタイムラインを表示する
+" nnoremap <silent> <Space>tt   :<C-u>TweetVimListStatuses sho vim<CR>
+
+" スクリーン名のキャッシュを利用して、neocomplcache で補完する
+if !exists('g:neocomplcache_dictionary_filetype_lists')
+  let g:neocomplcache_dictionary_filetype_lists = {}
+endif
+let neco_dic = g:neocomplcache_dictionary_filetype_lists
+let neco_dic.tweetvim_say = $HOME . '/.tweetvim/screen_name'
+
+"----------------------------------------------------
+" OpenBrowser
+"----------------------------------------------------
+nmap <Leader>w <Plug>(openbrowser-smart-search)
+
+
 ""----------------------------------------------------
 """ neobundle.vim
 ""----------------------------------------------------
