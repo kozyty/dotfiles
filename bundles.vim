@@ -39,6 +39,8 @@ NeoBundle 'taglist.vim'
 NeoBundle 'tomtom/checksyntax_vim'
 NeoBundle 'tomtom/quickfixsigns_vim'
 "NeoBundle 'sji/gundo.vim'
+NeoBundle 'violetyk/neco-php'
+NeoBundle 'fholgado/minibufexpl.vim'
 
 " framework
 NeoBundle 'tpope/vim-rails'
@@ -69,3 +71,11 @@ NeoBundle 'tpope/vim-haml'
 
 " indent
 NeoBundle 'pangloss/vim-javascript'
+
+" nanapi
+NeoBundle 'git@github.com:nanapi/nanapi.vim.git'
+
+" client + curl
+NeoBundle 'basyura/TweetVim'
+NeoBundle 'basyura/twibill.vim'
+NeoBundle 'tyru/open-browser.vim'
