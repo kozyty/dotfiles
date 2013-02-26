@@ -971,10 +971,10 @@ set tags=tags
 "----------------------------------------------------
 " fholgado/minibufexpl.vim
 "----------------------------------------------------
-let g:miniBufExplVSplit = 20
-let g:miniBufExplSplitBelow = 0
-let g:miniBufExplAutoOpen = 0
-map <Leader>t :TMiniBufExplorer<cr>
+" let g:miniBufExplVSplit = 20
+" let g:miniBufExplSplitBelow = 0
+" let g:miniBufExplAutoOpen = 0
+" map <Leader>t :TMiniBufExplorer<cr>
 
 "----------------------------------------------------
 " TweetVim

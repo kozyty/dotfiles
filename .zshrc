@@ -36,6 +36,11 @@ RPROMPT='%{%}%h %{%}%T%{%}'
 # }
 # RPROMPT="%1(v|%F{green}%1v%f|)"
 # source ~/.zsh/git-completion.bash
+#autoload bashcompinit
+#bashcompinit
+#source ~/.zsh/git-completion.bash
+#fpath=(~/workspace/zsh-completions $fpath)
+
 _set_env_git_current_branch() {
 GIT_CURRENT_BRANCH=$( git branch 2> /dev/null | grep '^\*' | cut -b 3- )
 }
