@@ -287,6 +287,9 @@ set wildmode=full
 " コマンドラインの補完キー
 set wildchar=<Tab>
 
+" 単語認識の境界文字を減らす
+setlocal iskeyword+=-
+
 
 
 "----------------------------------------------------

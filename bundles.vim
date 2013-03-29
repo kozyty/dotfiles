@@ -41,6 +41,7 @@ NeoBundle 'tomtom/quickfixsigns_vim'
 "NeoBundle 'sji/gundo.vim'
 "NeoBundle 'violetyk/neco-php'
 "NeoBundle 'fholgado/minibufexpl.vim'
+NeoBundle "rking/ag.vim"
 
 " framework
 NeoBundle 'tpope/vim-rails'

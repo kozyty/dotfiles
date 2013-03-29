@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/var/nanapi/apps/works.nanapi.jp/app/vendors/shells'
+let g:netrw_dirhist_2='/var/nanapi/apps/works.nanapi.jp/app/vendors'
+let g:netrw_dirhist_3='/var/nanapi/apps/works.nanapi.jp/app'
+let g:netrw_dirhist_4='/var/nanapi/apps'
+let g:netrw_dirhist_5='/home/kojima/workspace/dotfiles/.vim/bundle'
+let g:netrw_dirhist_6='/home/kojima/chef'
+let g:netrw_dirhist_7='/var/nanapi/apps/common/lib'
+let g:netrw_dirhist_8='/home/kojima/workspace/dotfiles/.vim/bundle'
+let g:netrw_dirhist_9='/var/nanapi/apps/s.nanapi.jp/src/pc/all/js'
