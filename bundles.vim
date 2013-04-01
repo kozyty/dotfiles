@@ -75,6 +75,7 @@ NeoBundle 'pangloss/vim-javascript'
 
 " nanapi
 NeoBundle 'git@github.com:nanapi/nanapi.vim.git'
+NeoBundle 'glidenote/nogistub.vim.git'
 
 " client + curl
 NeoBundle 'basyura/TweetVim'

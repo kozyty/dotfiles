@@ -1114,6 +1114,10 @@ nnoremap <C-n> :<C-u>bn<CR>
 " cakevim
 let g:cakephp_enable_auto_mode = 1
 
+" Gisthub
+let g:nogistub_url = "http://gist.nanapi.co.jp/"
+let g:nogistub_open_browser_after_post = 1
+
 " git
 let g:gitCurrentBranch = ''
 function! CurrentGitBranch()
