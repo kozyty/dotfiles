@@ -766,12 +766,26 @@ nnoremap <silent> <Space>es  :<C-u>NeoComplCacheEditSnippets
 "----------------------------------------------------
 " unite.vim
 "----------------------------------------------------
-nnoremap <silent> <Leader>ub :<C-u>Unite buffer<CR>
-nnoremap <silent> <Leader>um :<C-u>Unite file_mru<CR>
-nnoremap <silent> <Leader>ul :<C-u>Unite locate<CR>
-nnoremap <silent> <Leader>uo :<C-u>Unite outline<CR>
-nnoremap <silent> <Leader>uc :<C-u>Unite cake_
+nnoremap [unite] :<C-u>Unite<Space>
+nmap f [unite]
+
+nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
+nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
+nnoremap <silent> [unite]l :<C-u>Unite locate<CR>
+nnoremap <silent> [unite]o :<C-u>Unite outline<CR>
+nnoremap <silent> [unite]c :<C-u>Unite cake_
 set runtimepath+=~/.vim/plugin/
+
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+  let g:unite_source_grep_recursive_opt = ''
+" let g:unite_source_grep_max_candidates = 200
+  nnoremap [unite]g   :<C-u>Unite -no-quit grep<CR>
+  nnoremap [unite]G   :<C-u>Unite -no-quit grep<CR><CR><C-r><C-w><CR>
+else
+  nnoremap [unite]g   :<C-u>Unite -no-quit grep<CR>
+endif
 
 "----------------------------------------------------
 " ref.vim
@@ -1117,6 +1131,12 @@ let g:cakephp_enable_auto_mode = 1
 " Gisthub
 let g:nogistub_url = "http://gist.nanapi.co.jp/"
 let g:nogistub_open_browser_after_post = 1
+
+" yanktmp.vim
+map <silent> ty :call YanktmpYank()<CR>
+map <silent> tp :call YanktmpPaste_p()<CR>
+map <silent> tP :call YanktmpPaste_P()<CR>
+let g:yanktmp_file = '/tmp/vimyanktmp'
 
 " git
 let g:gitCurrentBranch = ''

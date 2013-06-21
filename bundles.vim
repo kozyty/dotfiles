@@ -29,24 +29,31 @@ NeoBundle 'motemen/hatena-vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'kana/vim-textobj-user'
 NeoBundle 'akiyan/vim-textobj-php'
+NeoBundle 'akiyan/vim-textobj-xml-attribute'
 NeoBundle 'vim-scripts/Align'
 NeoBundle 'vim-scripts/Modeliner'
 NeoBundle 'Lokaltog/vim-powerline'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'SQLUtilities'
 NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'taglist.vim'
+"NeoBundle 'taglist.vim'
+NeoBundle 'majutsushi/tagbar'
 NeoBundle 'tomtom/checksyntax_vim'
 NeoBundle 'tomtom/quickfixsigns_vim'
 "NeoBundle 'sji/gundo.vim'
-"NeoBundle 'violetyk/neco-php'
 "NeoBundle 'fholgado/minibufexpl.vim'
 NeoBundle "rking/ag.vim"
+NeoBundle "kozyty/ginger.vim"
+NeoBundle "vim-scripts/yanktmp.vim"
+
+" violetyk
+"NeoBundle 'violetyk/neco-php'
+NeoBundle 'violetyk/cake.vim'
+NeoBundle 'violetyk/gitquick.vim'
 
 " framework
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'tpope/vim-rake'
-NeoBundle 'violetyk/cake.vim'
 NeoBundle 'naberon/vim-cakehtml'
 
 " unite source
@@ -69,6 +76,8 @@ NeoBundle 'JavaScript-syntax'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'tpope/vim-haml'
+NeoBundle 'slim-template/vim-slim'
+
 
 " indent
 NeoBundle 'pangloss/vim-javascript'
@@ -82,3 +91,5 @@ NeoBundle 'basyura/TweetVim'
 NeoBundle 'basyura/twibill.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'tyru/open-browser-github.vim'
+NeoBundle 'trapd00r/irc.vim'
+NeoBundle 'VimIRC.vim'

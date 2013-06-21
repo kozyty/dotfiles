@@ -23,3 +23,4 @@ autodetach on
 logfile "$HOME/.screen/screen-%Y%m%d-%n.log"
 log on
 deflog on
+term xterm-256color
