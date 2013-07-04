@@ -100,4 +100,34 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 
+# enter de ls git-status
+function do_enter() {
+    if [ -n "$BUFFER" ]; then
+        zle accept-line
+        return 0
+    fi
+    echo
+    ls # ls_abbrev ←オススメ
+    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+        echo
+        echo -e "\e[0;33m--- git status ---\e[0m"
+        git status -sb
+    fi
+    zle reset-prompt
+    return 0
+}
+zle -N do_enter
+bindkey '^m' do_enter
+
+# mkdir + cd
+function mkcd() {
+  if [[ -d $1 ]]; then
+    echo "It already exsits! Cd to the directory."
+    cd $1
+  else
+    echo "Created the directory and cd to it."
+    mkdir -p $1 && cd $1
+  fi
+}
+
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
