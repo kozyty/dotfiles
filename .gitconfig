@@ -1,6 +1,6 @@
 [user]
   name = kozyty
-  email = me@kozyty.com
+  email = kozyty@gmail.com
   #email = taiyo.kojima@nanapi.co.jp
 
 [color]
@@ -19,6 +19,6 @@
 
 [core]
   #editor = /usr/local/vim-7.3/bin/vim -c \"set fenc=utf-8\"
-	editor = /usr/local/vim-7.3/bin/vim
+  #editor = /usr/local/vim-7.3/bin/vim
   excludesfile = ~/.gitignore
   whitespace = cr-at-eol

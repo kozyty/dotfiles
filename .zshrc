@@ -8,10 +8,10 @@ alias r='rails'
 alias ll='ls -lah'
 alias rm='rm -i'
 alias cp='cp -i'
-alias vi='vim'
+#alias vi='vim'
 alias wget='wget --no-check-certificate'
 alias grep='grep -n --color'
-alias vim='/usr/local/vim-7.3/bin/vim'
+#alias vim='/usr/local/vim-7.3/bin/vim'
 #alias vim='~/bin/vim'
 
 HISTFILE=~/.zsh_history
