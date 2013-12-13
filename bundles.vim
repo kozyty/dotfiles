@@ -8,7 +8,12 @@ NeoBundle 'vim-jp/vimdoc-ja'
 " utility
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'matchit.zip'
 NeoBundle 'The-NERD-tree'
@@ -28,6 +33,7 @@ NeoBundle 'dbext.vim'
 NeoBundle 'motemen/hatena-vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-gf-user'
 NeoBundle 'akiyan/vim-textobj-php'
 NeoBundle 'akiyan/vim-textobj-xml-attribute'
 NeoBundle 'vim-scripts/Align'
@@ -50,6 +56,7 @@ NeoBundle "vim-scripts/yanktmp.vim"
 "NeoBundle 'violetyk/neco-php'
 NeoBundle 'violetyk/cake.vim'
 NeoBundle 'violetyk/gitquick.vim'
+NeoBundle 'joonty/vdebug'
 
 " framework
 NeoBundle 'tpope/vim-rails'

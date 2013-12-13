@@ -1,5 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =8
+let g:netrw_dirhist_cnt =9
 let g:netrw_dirhist_1='/var/nanapi/apps'
 let g:netrw_dirhist_2='/var/nanapi/apps/nanapi.jp/app/config'
 let g:netrw_dirhist_3='/home/kojima/workspace/dotfiles/.vim/bundle'
@@ -8,3 +8,4 @@ let g:netrw_dirhist_5='/var/nanapi/apps/nanapi.jp/app/views'
 let g:netrw_dirhist_6='/var/nanapi/apps/nanapi.jp/app/views/profiles'
 let g:netrw_dirhist_7='/var/nanapi/apps/nanapi.jp/app/views'
 let g:netrw_dirhist_8='/var/nanapi/apps/nanapi.jp/app/views/pages/sp/theme_list'
+let g:netrw_dirhist_9='/usr/local/apache2.4/conf/extra'

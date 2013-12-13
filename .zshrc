@@ -8,11 +8,10 @@ alias r='rails'
 alias ll='ls -lah'
 alias rm='rm -i'
 alias cp='cp -i'
-#alias vi='vim'
 alias wget='wget --no-check-certificate'
 alias grep='grep -n --color'
-#alias vim='/usr/local/vim-7.3/bin/vim'
-#alias vim='~/bin/vim'
+alias vim='/usr/local/vim/bin/vim'
+alias vi='vim'
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -131,3 +130,5 @@ function mkcd() {
 }
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"

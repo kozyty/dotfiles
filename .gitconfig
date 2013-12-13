@@ -18,7 +18,7 @@
   commit = "commit -av"
 
 [core]
-  #editor = /usr/local/vim-7.3/bin/vim -c \"set fenc=utf-8\"
+  editor = /usr/local/vim/bin/vim -c \"set fenc=utf-8\"
   #editor = /usr/local/vim-7.3/bin/vim
   excludesfile = ~/.gitignore
   whitespace = cr-at-eol
