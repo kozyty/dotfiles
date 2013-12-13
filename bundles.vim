@@ -26,6 +26,7 @@ NeoBundle 'thinca/vim-localrc'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/unite-nyancat'
 NeoBundle 'scratch-utility'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
@@ -51,6 +52,10 @@ NeoBundle 'tomtom/quickfixsigns_vim'
 NeoBundle "rking/ag.vim"
 NeoBundle "kozyty/ginger.vim"
 NeoBundle "vim-scripts/yanktmp.vim"
+NeoBundle "osyo-manga/vim-precious"
+NeoBundle "Shougo/context_filetype.vim"
+NeoBundle 'rizzatti/funcoo.vim'
+NeoBundle 'rizzatti/dash.vim'
 
 " violetyk
 "NeoBundle 'violetyk/neco-php'
