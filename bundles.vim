@@ -21,6 +21,7 @@ NeoBundle 'thinca/vim-localrc'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/unite-nyancat'
 NeoBundle 'scratch-utility'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
@@ -28,6 +29,7 @@ NeoBundle 'dbext.vim'
 NeoBundle 'motemen/hatena-vim'
 NeoBundle 'PDV--phpDocumentor-for-Vim'
 NeoBundle 'kana/vim-textobj-user'
+NeoBundle 'kana/vim-gf-user'
 NeoBundle 'akiyan/vim-textobj-php'
 NeoBundle 'akiyan/vim-textobj-xml-attribute'
 NeoBundle 'vim-scripts/Align'
@@ -45,6 +47,10 @@ NeoBundle 'tomtom/quickfixsigns_vim'
 NeoBundle "rking/ag.vim"
 NeoBundle "kozyty/ginger.vim"
 NeoBundle "vim-scripts/yanktmp.vim"
+NeoBundle "osyo-manga/vim-precious"
+NeoBundle "Shougo/context_filetype.vim"
+NeoBundle 'rizzatti/funcoo.vim'
+NeoBundle 'rizzatti/dash.vim'
 
 " violetyk
 "NeoBundle 'violetyk/neco-php'
