@@ -53,7 +53,7 @@ autoload -U compinit
 compinit -u
 
 # antigen
-source ~/.zshrc.antigen
+# source ~/.zshrc.antigen
 
 # zsh オプション
 setopt complete_aliases
@@ -153,7 +153,7 @@ zstyle ':completion:*' group-name ''
 # zstyle ':completion:*' list-separator '-->'
 
 # hub.zsh_completion
-source ~/workspace/hub/etc/hub.zsh_completion
+#source ~/workspace/hub/etc/hub.zsh_completion
 
 # 名前で色を付けるようにする
 autoload colors

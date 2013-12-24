@@ -105,3 +105,6 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'tyru/open-browser-github.vim'
 NeoBundle 'trapd00r/irc.vim'
 NeoBundle 'VimIRC.vim'
+
+" Fetch
+NeoBundleFetch 'erikw/tmux-powerline'
