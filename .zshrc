@@ -11,7 +11,7 @@ alias cp='cp -i'
 alias vi='vim'
 alias wget='wget --no-check-certificate'
 alias grep='grep -n --color'
-alias vim='/usr/local/vim-7.3/bin/vim'
+#alias vim='/usr/local/vim-7.3/bin/vim'
 #alias vim='~/bin/vim'
 
 HISTFILE=~/.zsh_history
@@ -20,6 +20,9 @@ SAVEHIST=10000
 
 export PATH=/opt/local/bin:/opt/local/sbin/:$PATH
 export MANPATH=/opt/local/man:$MANPATH
+
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init - zsh)"
 
 PROMPT="%{%}%n@%m%{%}${WINDOW:+[$WINDOW]} %{%}%~ %{%}%* %{%}%#%{%} "
 PROMPT="%{%}%n@%m%{%}${WINDOW:+[$WINDOW]} %{%}%(4~,%-1~/.../%2~,%~)%{%} %# "
