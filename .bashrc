@@ -18,7 +18,7 @@ if [ `uname` = "Linux" ]; then
   PATH=$PATH:/usr/local/ctags/bin
   PATH=$PATH:/usr/local/tig-1.0/bin
 
-  alias vim='/usr/local/vim-7.3/bin/vim'
+  alias vim='/usr/local/vim/bin/vim'
 
 elif [ `uname` = "Darwin" ]; then
   # for Mac
@@ -41,7 +41,7 @@ alias grep='grep -n --color'
 
 # -S オプションで折り返さなくする
 # エディタはvim
-alias mysql="EDITOR=\"/usr/local/vim-7.3/bin/vim -c ':set ft=sql'\" mysql --auto-rehash --pager='less -S'"
+alias mysql="EDITOR=\"/usr/local/vim/bin/vim -c ':set ft=sql'\" mysql --auto-rehash --pager='less -S'"
 
 ### Git
 # gitのブランチの情報を婦論プロトに表示させておく

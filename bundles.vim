@@ -8,7 +8,12 @@ NeoBundle 'vim-jp/vimdoc-ja'
 " utility
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc', {
+      \ 'build' : {
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'matchit.zip'
 NeoBundle 'The-NERD-tree'
@@ -21,6 +26,7 @@ NeoBundle 'thinca/vim-localrc'
 NeoBundle 'mattn/zencoding-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
+NeoBundle 'mattn/unite-nyancat'
 NeoBundle 'scratch-utility'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-fugitive'
@@ -46,11 +52,16 @@ NeoBundle 'tomtom/quickfixsigns_vim'
 NeoBundle "rking/ag.vim"
 NeoBundle "kozyty/ginger.vim"
 NeoBundle "vim-scripts/yanktmp.vim"
+NeoBundle "osyo-manga/vim-precious"
+NeoBundle "Shougo/context_filetype.vim"
+NeoBundle 'rizzatti/funcoo.vim'
+NeoBundle 'rizzatti/dash.vim'
 
 " violetyk
 "NeoBundle 'violetyk/neco-php'
 NeoBundle 'violetyk/cake.vim'
 NeoBundle 'violetyk/gitquick.vim'
+NeoBundle 'joonty/vdebug'
 
 " framework
 NeoBundle 'tpope/vim-rails'
@@ -94,3 +105,6 @@ NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'tyru/open-browser-github.vim'
 NeoBundle 'trapd00r/irc.vim'
 NeoBundle 'VimIRC.vim'
+
+" Fetch
+NeoBundleFetch 'erikw/tmux-powerline'

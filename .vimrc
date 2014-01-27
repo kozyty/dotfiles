@@ -773,7 +773,9 @@ nnoremap <silent> [unite]b :<C-u>Unite buffer<CR>
 nnoremap <silent> [unite]m :<C-u>Unite file_mru<CR>
 nnoremap <silent> [unite]l :<C-u>Unite locate<CR>
 nnoremap <silent> [unite]o :<C-u>Unite outline<CR>
-nnoremap <silent> [unite]c :<C-u>Unite cake_
+nnoremap <silent> [unite]n :<C-u>Unite n_class<CR>
+nnoremap <silent> [unite]c :<C-u>Unite cake_controller  cake_model  cake_view  cake_shell  cake_component  cake_behavior  cake_lib  cake_fixture  cake_task  cake_core  cake_config  cake_helper -start-insert<CR>
+nnoremap <silent> [unite]a :<C-u>Unite buffer file_mru -start-insert<CR>
 set runtimepath+=~/.vim/plugin/
 
 if executable('ag')
@@ -797,7 +799,7 @@ else
 endif
 
 " PHP マニュアルを音速で引く
-nnoremap <Leader>ref :<C-u>Unite ref/phpmanual<CR>
+nnoremap [unite]r :<C-u>Unite ref/phpmanual -start-insert<CR>
 
 " ftと辞書のマッピング
 let g:ref_detect_filetype = {
@@ -1117,6 +1119,17 @@ nmap <Leader>w <Plug>(openbrowser-smart-search)
 "let mygrepprg = 'grep'
 "let MyGrep_ShellEncoding = 'utf-8'
 
+" precious " {{{
+let g:precious_enable_switchers = {
+      \ "*" : {
+      \   "setfiletype" : 0
+      \ },
+      \ "markdown" : {
+      \   "setfiletype" : 1
+      \ },
+      \}
+" }}}
+
 "" Tabs
 nnoremap <D-t> :<C-u>tabnew<CR>:tabmove<CR>
 nnoremap <D-w> :<C-u>tabclose<CR>
@@ -1139,20 +1152,20 @@ map <silent> tP :call YanktmpPaste_P()<CR>
 let g:yanktmp_file = '/tmp/vimyanktmp'
 
 " git
-let g:gitCurrentBranch = ''
-function! CurrentGitBranch()
-let cwd = getcwd()
-cd %:p:h
-let branch = matchlist(system('/opt/local/bin/git branch -a --no-color'), '¥v¥* (¥w*)¥r?¥n')
-execute 'cd ' . cwd
-if (len(branch))
-let g:gitCurrentBranch = '][git:' . branch[1] . ''
-else
-let g:gitCurrentBranch = ''
-endif
-return g:gitCurrentBranch
-endfunction
-autocmd BufEnter * :call CurrentGitBranch()
+" let g:gitCurrentBranch = ''
+" function! CurrentGitBranch()
+" let cwd = getcwd()
+" cd %:p:h
+" let branch = matchlist(system('/opt/local/bin/git branch -a --no-color'), '¥v¥* (¥w*)¥r?¥n')
+" execute 'cd ' . cwd
+" if (len(branch))
+" let g:gitCurrentBranch = '][git:' . branch[1] . ''
+" else
+" let g:gitCurrentBranch = ''
+" endif
+" return g:gitCurrentBranch
+" endfunction
+" autocmd BufEnter * :call CurrentGitBranch()
 "set statusline=%<%n¥ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).':'.&ff}%{g:gitCurrentBranch}%{']'}%y¥ %f%=%l,%c%V%8P
 
 augroup BinaryXXD
