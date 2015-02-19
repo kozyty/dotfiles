@@ -64,8 +64,6 @@ NeoBundle 'violetyk/gitquick.vim'
 NeoBundle 'joonty/vdebug'
 
 " framework
-NeoBundle 'tpope/vim-rails'
-NeoBundle 'tpope/vim-rake'
 NeoBundle 'naberon/vim-cakehtml'
 
 " unite source
@@ -81,6 +79,8 @@ NeoBundle 'mrkn256.vim'
 NeoBundle 'molokai'
 NeoBundle 'Zenburn'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'wombat256.vim'
+NeoBundle 'jpo/vim-railscasts-theme'
 
 " syntax
 NeoBundle 'jQuery'
@@ -88,8 +88,6 @@ NeoBundle 'JavaScript-syntax'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'hail2u/vim-css3-syntax'
 NeoBundle 'tpope/vim-haml'
-NeoBundle 'slim-template/vim-slim'
-
 
 " indent
 NeoBundle 'pangloss/vim-javascript'
@@ -108,3 +106,18 @@ NeoBundle 'VimIRC.vim'
 
 " Fetch
 NeoBundleFetch 'erikw/tmux-powerline'
+
+" Ruby
+NeoBundle 'rhysd/vim-textobj-ruby'
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-bundler'
+NeoBundle 'tpope/vim-rake'
+NeoBundle 'slim-template/vim-slim.git'
+NeoBundle 'tpope/vim-dispatch'
+NeoBundle 'thoughtbot/vim-rspec'
+NeoBundle 'scrooloose/syntastic'
+
+" TypeScript
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'clausreinke/typescript-tools'

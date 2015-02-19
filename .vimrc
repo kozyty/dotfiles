@@ -121,20 +121,6 @@ set updatecount=500
 "----------------------------------------------------
 
 if has('gui_running')
-  "--------------------------------------------------
-  " GUI
-  "--------------------------------------------------
-
-  " カラースキーマ .vim/colors/の中に入れる
-  " set background=light
-  " set background=dark
-  " colorscheme solarized
-  " colorscheme desert
-
-  " マウスを使う。
-  "set mouse=a
-  "set ttymouse=xterm2
-
   " 入力時にマウスポインタを隠す (nomousehide:隠さない)
   set mousehide
 
@@ -142,32 +128,7 @@ if has('gui_running')
   " set guioptions=m
   set guioptions=
 
-
-  if has('win32') || has('win64')
-    "--------------------------------------------------
-    " Windows用 gvim
-    "--------------------------------------------------
-
-    " Font
-    " Windows の gvim でフォントを設定するには guifont オプションと guifontwide オプションを使う。
-    " 前者がいわゆる半角文字のフォント、後者が全角文字のフォント。
-    " どちらもカンマで区切って複数のフォントを指定できる (最初に利用可能なフォントが選ばれる)。例えば _gvimrc に以下のように書く:
-    " set guifont=Consolas:h10,Lucida_Console:h10:w5 guifontwide=MS_Gothic:h10
-    " h10"はフォントの高さを 10 ポイントにする指定。同様に"w5"は幅を 5 ポイントにする。
-    " 半角と全角でフォントを使い分ける必要がない場合は guifont だけ設定すればよい。
-
-    " set guifont=MS_Gothic:h9:cSHIFTJIS
-    " set guifont=MS_Mincho:h12:cSHIFTJIS
-    " set guifont=Osaka－等幅:h9:cSHIFTJIS
-    set guifont=TakaoGothic:h10:cSHIFTJIS
-
-    " ヤンク内容をwindowsのクリップボードに格納する。
-    set clipboard=unnamed
-
-    " 起動したときに最大化
-    au GUIEnter * simalt ~x
-
-  elseif has('mac')
+  if has('mac')
     "--------------------------------------------------
     " Mac用 gvim
     "--------------------------------------------------
@@ -189,19 +150,26 @@ else
   " CUI
   "--------------------------------------------------
 
-  " 補完の色を変更
-  " hi Pmenu ctermfg=Black ctermbg=Grey
-  " hi PmenuSel ctermbg=Blue
-  " hi PmenuSbar ctermbg=Cyan
+  augroup au_initvim
+    autocmd!
+    " tabstop / shiftwidth
+    autocmd! FileType vim,ruby,eruby,slim,php,javascript,html,zsh setlocal shiftwidth=2 tabstop=2
+    " 保存時に行末の空白を除去する
+    autocmd BufWritePre * :%s/\s\+$//ge
+    " 256色表示
+    autocmd Colorscheme * :set t_Co=256
+    " 背景色でクリアする
+    autocmd Colorscheme * :set t_ut=
+    " specialkeyの色設定
+    autocmd Colorscheme * :highlight SpecialKey ctermfg=238
 
-  " 対応する括弧の色を控えめにしておく
-  " hi MatchParen term=standout ctermbg=LightGrey ctermfg=Black guibg=LightGrey guifg=Black
+    set lazyredraw
+  augroup END
 
-  " colorscheme mrkn256
-
+  colorscheme railscasts
+  colorscheme wombat256mod
+  set background=dark
 endif
-
-
 
 "----------------------------------------------------
 " 表示色関係
@@ -216,6 +184,17 @@ endif
 " エラーと同じハイライトを適用。
 highlight link ZenkakuSpace Error
 autocmd BufRead,BufNew * match ZenkakuSpace /　/
+
+hi LineNr     ctermfg=darkgreen ctermbg=darkgrey
+hi Visual     ctermfg=white ctermbg=green
+hi Search     ctermfg=white ctermbg=green
+hi DiffAdd    ctermfg=226 ctermbg=235
+hi DiffChange ctermfg=7 ctermbg=235
+hi DiffDelete ctermfg=52 ctermbg=233
+hi DiffText   cterm=none ctermfg=208 ctermbg=235
+hi SpellBad   cterm=underline ctermfg=208 ctermbg=235
+hi SpellLocal cterm=italic ctermfg=209 ctermbg=235
+hi SpellRare  cterm=bold ctermfg=210 ctermbg=235
 
 " ステータスラインの色 ctermfgがバックの色で、ctermbgがフロントの文字色
 " highlight StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=white
@@ -487,9 +466,9 @@ nnoremap <C-h> :<C-u>help<Space>
 nnoremap <C-h><C-h> :<C-u>help<Space><C-r><C-w><CR>
 
 
-" ---------- 
+" ----------
 " バッファ系
-" ---------- 
+" ----------
 nnoremap <silent>bb :b#<CR>
 nnoremap <silent>bp :bprevious<CR>
 nnoremap <silent>bn :bnext<CR>
@@ -509,21 +488,16 @@ noremap <C-k> <C-w>k<C-w>_
 " Ctrl+Pで前のバッファを表示
 " map <silent> <C-P> :bprevious<CR>
 
-
-
-" ---------- 
+" ----------
 " 移動系
-" ---------- 
+" ----------
 " 移動量アップ
 nnoremap <C-e> 10<C-e>
 nnoremap <C-y> 10<C-y>
 
-
-
-
-" ---------- 
+" ----------
 " 検索系
-" ---------- 
+" ----------
 " ハイライトを消す。
 noremap <Esc><Esc> :<C-u>set nohlsearch<Return>
 
@@ -541,9 +515,9 @@ vnoremap z? <ESC>?\%V
 cnoremap <expr>/ getcmdtype() == '/' ? '\/' : '/'
 
 
-" ---------- 
+" ----------
 " 編集系
-" ---------- 
+" ----------
 " インサートモードを抜ける
 inoremap jj <Esc>
 
@@ -761,7 +735,7 @@ let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 " ftを指定しなければ現在のftのスニペットファイルを開く。
 " ちなみに、プラグインに組み込まれてるスニペットファイルは下記にある。
 " ~/.vim/autoload/neocomplcache/sources/snippets_complete/
-nnoremap <silent> <Space>es  :<C-u>NeoComplCacheEditSnippets 
+nnoremap <silent> <Space>es  :<C-u>NeoComplCacheEditSnippets
 
 "----------------------------------------------------
 " unite.vim
@@ -853,7 +827,7 @@ let g:user_zen_settings = {
       \   'extends' : 'html',
       \ },
       \ 'perl' : {
-      \   'aliases' : { 
+      \   'aliases' : {
       \     'req' : 'require '
       \   },
       \   'snippets' : {
@@ -934,7 +908,7 @@ let g:SrcExpl_jumpKey = "<ENTER>"
 " Source Explorerの機能ON/OFF(#普通にvimrcで書く方法と同じ)
 nnoremap <F10> :SrcExplToggle<CR>
 
-let g:SrcExpl_pluginList = [ 
+let g:SrcExpl_pluginList = [
       \ "__Tag_List__",
       \ "_NERD_tree_",
       \ "Source_Explorer"
@@ -944,7 +918,7 @@ let g:SrcExpl_pluginList = [
 "----------------------------------------------------
 " powerline.vim
 "----------------------------------------------------
-if has('gui_running') 
+if has('gui_running')
   let g:Powerline_symbols = 'fancy'
 endif
 " CUI環境下でいろ変更が遅れることがある対応

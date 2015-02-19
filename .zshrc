@@ -9,9 +9,11 @@ alias ll='ls -lah'
 alias rm='rm -i'
 alias cp='cp -i'
 alias wget='wget --no-check-certificate'
-alias grep='grep -n --color'
+alias grep='grep --color'
 #alias vim='/usr/local/vim/bin/vim'
 alias vi='vim'
+alias node='node --harmony'
+alias git-delete-merged-branches="git branch --merged | grep -v '*' | xargs -I % git branch -d %"
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -19,6 +21,7 @@ SAVEHIST=10000
 
 export PATH=/opt/local/bin:/opt/local/sbin/:$PATH
 export MANPATH=/opt/local/man:$MANPATH
+export PATH=/Applications/Xcode6-Beta2.app//Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH
 
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init - zsh)"
@@ -210,3 +213,4 @@ function mkcd() {
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+export PATH=/opt/chefdk/bin:$PATH
