@@ -5,11 +5,26 @@ set nocompatible
 filetype plugin indent off
 
 if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
+" Required:
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
 source $HOME/workspace/dotfiles/bundles.vim
+
+" My Bundles here:
+" Refer to |:NeoBundle-examples|.
+" Note: You don't set neobundle setting in .gvimrc!
+
+call neobundle#end()
 
 "----------------------------------------------------
 " 基本的な設定
@@ -166,9 +181,9 @@ else
     set lazyredraw
   augroup END
 
-  colorscheme railscasts
+  " colorscheme railscasts
   colorscheme wombat256mod
-  set background=dark
+  " set background=dark
 endif
 
 "----------------------------------------------------
