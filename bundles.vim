@@ -121,3 +121,7 @@ NeoBundle 'scrooloose/syntastic'
 " TypeScript
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'clausreinke/typescript-tools'
+
+" Riot
+NeoBundle 'nicklasos/vim-jsx-riot'
+NeoBundle 'taltoad/vim-jade'

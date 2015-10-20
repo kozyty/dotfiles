@@ -23,8 +23,12 @@ export PATH=/opt/local/bin:/opt/local/sbin/:$PATH
 export MANPATH=/opt/local/man:$MANPATH
 export PATH=/Applications/Xcode6-Beta2.app//Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin:$PATH
 
+## rbenv
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init - zsh)"
+
+## npm
+export PATH="/usr/local/share/npm/bin:$PATH"
 
 PROMPT="%{%}%n@%m%{%}${WINDOW:+[$WINDOW]} %{%}%~ %{%}%* %{%}%#%{%} "
 PROMPT="%{%}%n@%m%{%}${WINDOW:+[$WINDOW]} %{%}%(4~,%-1~/.../%2~,%~)%{%} %# "
@@ -172,13 +176,25 @@ export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # -------------------------
+# peco
+# -------------------------
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tail -r  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+
+zle -N peco-history-selection
+bindkey '^R' peco-history-selection
+
+# -------------------------
 # history-search-end
 # -------------------------
-autoload history-search-end
-zle -N history-beginning-search-backward-end history-search-end
-zle -N history-beginning-search-forward-end history-search-end
-bindkey "^P" history-beginning-search-backward-end
-bindkey "^N" history-beginning-search-forward-end
+# autoload history-search-end
+# zle -N history-beginning-search-backward-end history-search-end
+# zle -N history-beginning-search-forward-end history-search-end
+# bindkey "^P" history-beginning-search-backward-end
+# bindkey "^N" history-beginning-search-forward-end
 
 # enter de ls git-status
 function do_enter() {

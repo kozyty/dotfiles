@@ -1108,6 +1108,9 @@ nmap <Leader>w <Plug>(openbrowser-smart-search)
 "let mygrepprg = 'grep'
 "let MyGrep_ShellEncoding = 'utf-8'
 
+" vim-jsx-riot
+au BufNewFile,BufRead *.tag setlocal ft=javascript
+
 " precious " {{{
 let g:precious_enable_switchers = {
       \ "*" : {
