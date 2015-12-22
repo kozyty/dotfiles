@@ -56,9 +56,6 @@ _set_env_git_current_branch
 _update_rprompt
 }
 
-#rvm
-# if [[ -s ~/.rvm/scripts/rvm ]] ; then source ~/.rvm/scripts/rvm ; fi
-
 autoload -U compinit
 compinit -u
 
@@ -226,7 +223,4 @@ function mkcd() {
   fi
 }
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
 export PATH=/opt/chefdk/bin:$PATH
