@@ -50,3 +50,6 @@ export PS1='[\u@\h \W$(__git_ps1 " \[\033[1;32m\](%s)\[\033[0m\]")]\$ '
 
 ### SSH
 alias ssh="ssh -2 -o ServerAliveInterval=60"
+
+export NVM_DIR="/Users/taiyo.kojima/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm

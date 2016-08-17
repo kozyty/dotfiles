@@ -15,6 +15,10 @@ alias vi='vim'
 alias node='node --harmony'
 alias git-delete-merged-branches="git branch --merged | grep -v '*' | xargs -I % git branch -d %"
 
+alias php="/Applications/XAMPP/bin/php"
+alias pear="/Applications/XAMPP/bin/pear"
+alias pecl="/Applications/XAMPP/bin/pecl"
+
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
@@ -27,8 +31,19 @@ export PATH=/Applications/Xcode6-Beta2.app//Contents/Developer/Toolchains/XcodeD
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init - zsh)"
 
+## direnv
+export EDITOR=vim
+eval "$(direnv hook zsh)"
+
 ## npm
 export PATH="/usr/local/share/npm/bin:$PATH"
+
+## nvm
+[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+nvm use default
+npm_dir=${NVM_PATH}_modules
+export NODE_PATH=$npm_dir
+source ~/.nvm/nvm.sh
 
 PROMPT="%{%}%n@%m%{%}${WINDOW:+[$WINDOW]} %{%}%~ %{%}%* %{%}%#%{%} "
 PROMPT="%{%}%n@%m%{%}${WINDOW:+[$WINDOW]} %{%}%(4~,%-1~/.../%2~,%~)%{%} %# "
