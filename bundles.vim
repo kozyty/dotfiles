@@ -23,7 +23,7 @@ NeoBundle 'Townk/vim-autoclose'
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-quickrun'
 NeoBundle 'thinca/vim-localrc'
-NeoBundle 'mattn/zencoding-vim'
+NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mattn/webapi-vim'
 NeoBundle 'mattn/gist-vim'
 NeoBundle 'mattn/unite-nyancat'
@@ -91,10 +91,6 @@ NeoBundle 'tpope/vim-haml'
 
 " indent
 NeoBundle 'pangloss/vim-javascript'
-
-" nanapi
-NeoBundle 'git@github.com:nanapi/nanapi.vim.git'
-NeoBundle 'glidenote/nogistub.vim.git'
 
 " client + curl
 NeoBundle 'basyura/TweetVim'
