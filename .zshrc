@@ -230,3 +230,9 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export PATH=/opt/chefdk/bin:$PATH
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/taiyo.kojima/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/taiyo.kojima/google-cloud-sdk/completion.zsh.inc'
