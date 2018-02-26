@@ -39,11 +39,11 @@ eval "$(direnv hook zsh)"
 export PATH="/usr/local/share/npm/bin:$PATH"
 
 ## nvm
-[[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
-nvm use default
-npm_dir=${NVM_PATH}_modules
-export NODE_PATH=$npm_dir
-source ~/.nvm/nvm.sh
+# [[ -s ~/.nvm/nvm.sh ]] && . ~/.nvm/nvm.sh
+# nvm use default
+# npm_dir=${NVM_PATH}_modules
+# export NODE_PATH=$npm_dir
+# source ~/.nvm/nvm.sh
 
 PROMPT="%{%}%n@%m%{%}${WINDOW:+[$WINDOW]} %{%}%~ %{%}%* %{%}%#%{%} "
 PROMPT="%{%}%n@%m%{%}${WINDOW:+[$WINDOW]} %{%}%(4~,%-1~/.../%2~,%~)%{%} %# "
@@ -240,8 +240,15 @@ function mkcd() {
 
 export PATH=/opt/chefdk/bin:$PATH
 
+if [ -x "`which go`" ]; then
+  export GOROOT=`go env GOROOT`
+  export GOPATH=$HOME/code/go-local
+  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+fi
+
 # The next line updates PATH for the Google Cloud SDK.
-source '/Users/taiyo.kojima/google-cloud-sdk/path.zsh.inc'
+# source '/Users/taiyo.kojima/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
-source '/Users/taiyo.kojima/google-cloud-sdk/completion.zsh.inc'
+# source '/Users/taiyo.kojima/google-cloud-sdk/completion.zsh.inc'
+export PATH="$(brew --prefix qt@5.5)/bin:$PATH"

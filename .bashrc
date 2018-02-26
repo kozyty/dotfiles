@@ -53,3 +53,4 @@ alias ssh="ssh -2 -o ServerAliveInterval=60"
 
 export NVM_DIR="/Users/taiyo.kojima/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
