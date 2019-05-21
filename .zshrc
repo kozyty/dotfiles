@@ -12,7 +12,6 @@ alias wget='wget --no-check-certificate'
 alias grep='grep --color'
 #alias vim='/usr/local/vim/bin/vim'
 alias vi='vim'
-alias node='node --harmony'
 alias git-delete-merged-branches="git branch --merged | grep -v '*' | xargs -I % git branch -d %"
 
 alias php="/Applications/XAMPP/bin/php"
@@ -30,6 +29,10 @@ export PATH=/Applications/Xcode6-Beta2.app//Contents/Developer/Toolchains/XcodeD
 ## rbenv
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init - zsh)"
+
+## ndenv
+export PATH=$HOME/.ndenv/bin:$PATH
+eval "$(ndenv init - zsh)"
 
 ## direnv
 export EDITOR=vim
@@ -70,6 +73,10 @@ chpwd() {
 _set_env_git_current_branch
 _update_rprompt
 }
+
+if [ -e ~/.zsh/completions ]; then
+  fpath=(~/.zsh/completions $fpath)
+fi
 
 autoload -U compinit
 compinit -u
@@ -241,10 +248,22 @@ function mkcd() {
 export PATH=/opt/chefdk/bin:$PATH
 
 if [ -x "`which go`" ]; then
-  export GOROOT=`go env GOROOT`
-  export GOPATH=$HOME/code/go-local
-  export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+	export GOENV_ROOT=$HOME/.goenv
+	export PATH=$GOENV_ROOT/bin:$PATH
+  export GOPATH=$HOME/go
+  PATH=$PATH:$GOPATH/bin
 fi
+
+function peco-ghq () {
+  local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+  if [ -n "$selected_dir" ]; then
+    BUFFER="cd ${selected_dir}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N peco-ghq
+bindkey '^]' peco-ghq
 
 # The next line updates PATH for the Google Cloud SDK.
 # source '/Users/taiyo.kojima/google-cloud-sdk/path.zsh.inc'
