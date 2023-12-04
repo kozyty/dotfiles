@@ -1,89 +1,33 @@
-# https://github.com/Homebrew/homebrew-bundle
+tap "homebrew/bundle"
 
-# ----------------------------------------
-# brew
-# ----------------------------------------
-
-brew 'direnv'
-brew 'cocoapods'
-brew 'ruby-build'
-brew 'rbenv'
-brew "mas"
-brew "chxcode"
-brew 'jq'
+brew "cocoapods"
+brew "direnv"
 brew "gh"
-brew "nodebrew"
 brew "ghq"
-brew "peco"
 brew "hub"
+brew "jq"
+brew "mas"
+brew "nodebrew"
+brew "peco"
+brew "rbenv"
+brew "tig"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
-# ----------------------------------------
-# tap
-# ----------------------------------------
-# tap 'homebrew/bundle'
-# tap 'homebrew/cask'
-# tap 'homebrew/core'
-# tap 'klaaspieter/formula'
-
-# ----------------------------------------
-# cask
-# ----------------------------------------
-# --------- priority ---------
-# cask 'iterm2'
-# cask '1password'
-# cask 'google-chrome'
-# cask 'xcodes'
-cask 'charles'
-cask 'clipy'
-# cask 'adobe-creative-cloud'
-# cask 'adobe-acrobat-reader'
-# cask 'google-japanese-ime'
-# cask 'slack'
-cask 'zoom'
-
-# --------- require ---------
-
-# --- ide
-cask 'android-studio'
-cask 'visual-studio-code'
-
-# --- dev tool
+cask "android-studio"
+cask "charles"
+cask "clipy"
+cask "figma"
+cask "miro"
+cask "proxyman"
 cask "sf-symbols"
-# cask 'quicklook-json'
-cask 'proxyman'
+cask "zoom"
 
-# --- other tool
-# cask 'microsoft-office'
-cask 'miro'
-cask 'figma'
-cask 'discord'
-
-# --------- optional ---------
-
-# --- dev tool
-# cask 'postman'
-# cask 'sequel-pro'
-# cask 'docker'
-
-# --- other tool
-# graphviz
-# librsvg
-# plantuml
-
-
-# brew cask alfred link
-
-# ----------------------------------------
-# mas
-# ----------------------------------------
-
-# Xcode関係の不要ファイルを削除
-# mas 'DevCleaner', id: 1388020431
-
-# ----------------------------------------
-# Font
-# ----------------------------------------
-# tap "homebrew/cask-fonts"
-# cask "font-migu-1p"
+vscode "Dart-Code.dart-code"
+vscode "DavidAnson.vscode-markdownlint"
+vscode "ecmel.vscode-html-css"
+vscode "GitHub.copilot"
+vscode "GitHub.copilot-chat"
+vscode "golang.go"
+vscode "MS-CEINTL.vscode-language-pack-ja"
+vscode "Shopify.ruby-lsp"
