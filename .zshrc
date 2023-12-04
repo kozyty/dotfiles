@@ -31,8 +31,8 @@ export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init - zsh)"
 
 ## ndenv
-export PATH=$HOME/.ndenv/bin:$PATH
-eval "$(ndenv init - zsh)"
+# export PATH=$HOME/.ndenv/bin:$PATH
+# eval "$(ndenv init - zsh)"
 
 ## direnv
 export EDITOR=vim
@@ -271,3 +271,5 @@ bindkey '^]' peco-ghq
 # The next line enables shell command completion for gcloud.
 # source '/Users/taiyo.kojima/google-cloud-sdk/completion.zsh.inc'
 export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
