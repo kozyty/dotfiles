@@ -1,1 +1,1 @@
-/Users/taiyo.kojima/workspace/dotfiles/.vim
+/Users/taiyo-kojima/src/github.com/kozyty/dotfiles/.vim

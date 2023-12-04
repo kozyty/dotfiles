@@ -18,7 +18,7 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
-source $HOME/workspace/dotfiles/bundles.vim
+source $HOME/src/github.com/kozyty/dotfiles/bundles.vim
 
 " My Bundles here:
 " Refer to |:NeoBundle-examples|.
@@ -180,10 +180,6 @@ else
 
     set lazyredraw
   augroup END
-
-  " colorscheme railscasts
-  colorscheme wombat256mod
-  " set background=dark
 endif
 
 "----------------------------------------------------
@@ -869,11 +865,6 @@ nnoremap <Space>ct :<C-u>Ctest
 nnoremap <Space>cf :<C-u>Cfixture
 nnoremap <Space>cs :<C-u>Cshell
 nnoremap <Space>cd :<C-u>Cdesc
-
-"----------------------------------------------------
-" localrc.vim
-"----------------------------------------------------
-call localrc#load('.init.vimrc', $HOME)
 
 "----------------------------------------------------
 " gist.vim

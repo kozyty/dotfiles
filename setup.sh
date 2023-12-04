@@ -1,25 +1,15 @@
-#!/bin/sh
+#!/bin/zsh
 
 cd ~/
 mkdir swap backup tmp memo tags trash
 
-cd ~/workspace/dotfiles
-DOT_FILES=( .bashrc .vim .vimrc .screenrc .zshrc .ctags .gitignore .gitconfig .tmux.conf .tmux-powerlinerc)
+cd -
+DOT_FILES=( .vim .vimrc .screenrc .zshrc .ctags .gitignore .gitconfig .tmux.conf .tmux-powerlinerc)
 for file in ${DOT_FILES[@]}
 do
-  ln -sf ~/workspace/dotfiles/$file ~/$file
+  ln -sf $(cd $(dirname $0) && pwd)/$file ~/$file
   echo "シンボリックリンクを貼りました: ~/$file"
 done
 
-cd ~/.vim/manual
-wget http://jp1.php.net/get/php_manual_ja.tar.gz/from/this/mirror -O php_manual_ja.tar.gz
-tar xf php_manual_ja.tar.gz
-mv php-chunked-xhtml php_manual_ja
-
-cd ~/workspace/dotfiles/
-git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-git clone git://github.com/rosylilly/git-hook.git ~/.git-hook
-echo 'export PATH="$HOME/.git-hook/bin:$PATH"' >> ~/.zshenv
-
-# vim -u ~/dotfiles/bundles.vim +BundleInstall +q
+git clone git@github.com:Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 vim  +NeoBundleInstall +q
