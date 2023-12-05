@@ -11,6 +11,7 @@ brew "nodebrew"
 brew "peco"
 brew "rbenv"
 brew "tig"
+brew "tmux"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 

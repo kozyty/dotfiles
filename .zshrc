@@ -270,6 +270,7 @@ bindkey '^]' peco-ghq
 
 # The next line enables shell command completion for gcloud.
 # source '/Users/taiyo.kojima/google-cloud-sdk/completion.zsh.inc'
-export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
+# export PATH="$(brew --prefix qt@5.5)/bin:$PATH"
+
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
