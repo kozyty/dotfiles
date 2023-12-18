@@ -64,6 +64,9 @@ set splitbelow
 " vsplitしたときに右に出す。
 set splitright
 
+" ヤンクをclipboardにも保持
+set clipboard+=unnamed
+
 
 "----------------------------------------------------
 " エンコーディング

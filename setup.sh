@@ -4,7 +4,7 @@ cd ~/
 mkdir swap backup tmp memo tags trash
 
 cd -
-DOT_FILES=( .vim .vimrc .screenrc .zshrc .ctags .gitignore .gitconfig .tmux.conf .tmux-powerlinerc)
+DOT_FILES=(.git .vim .vimrc .screenrc .zshrc .ctags .gitignore .gitconfig .tmux.conf .tmux-powerlinerc)
 for file in ${DOT_FILES[@]}
 do
   ln -sf $(cd $(dirname $0) && pwd)/$file ~/$file

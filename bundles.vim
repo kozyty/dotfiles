@@ -59,7 +59,7 @@ NeoBundle 'rizzatti/dash.vim'
 
 " violetyk
 "NeoBundle 'violetyk/neco-php'
-NeoBundle 'violetyk/cake.vim'
+"NeoBundle 'violetyk/cake.vim'
 NeoBundle 'violetyk/gitquick.vim'
 NeoBundle 'joonty/vdebug'
 

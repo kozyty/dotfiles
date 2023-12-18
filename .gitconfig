@@ -33,5 +33,7 @@
 	root = ~/src
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[init]
+	templatedir = ~/.git
 [includeIf "gitdir:~/src/github.com/bm-sms/"]
   path = ~/.gitconfig_sms

@@ -23,6 +23,7 @@ cask "miro"
 cask "proxyman"
 cask "sf-symbols"
 cask "zoom"
+cask "sequel-ace"
 
 vscode "Dart-Code.dart-code"
 vscode "DavidAnson.vscode-markdownlint"
