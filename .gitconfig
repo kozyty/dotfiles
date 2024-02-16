@@ -37,3 +37,5 @@
 	templatedir = ~/.git
 [includeIf "gitdir:~/src/github.com/bm-sms/"]
   path = ~/.gitconfig_sms
+[push]
+	autoSetupRemote = true
